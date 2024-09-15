@@ -92,6 +92,8 @@ void lista_exibir(Lista *lista)
     }
 }
 
+// TODO adicionar a verificação na de curso existente hora de cadastrar o aluno
+
 // int main()
 // {
 //     Lista *lista = lista_cria();
