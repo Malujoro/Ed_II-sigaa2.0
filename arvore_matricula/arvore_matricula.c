@@ -74,8 +74,8 @@ void arvore_matricula_exibir(No_Matricula *raiz)
 {
     if(raiz != NULL)
     {
-        printf("%d -> ", raiz->info);
         arvore_matricula_exibir(raiz->esquerdo);
+        printf("%d -> ", raiz->info);
         arvore_matricula_exibir(raiz->direito);
     }
 }
