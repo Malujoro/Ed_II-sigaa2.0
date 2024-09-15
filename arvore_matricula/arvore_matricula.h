@@ -22,7 +22,4 @@ void arvore_matricula_add(Arvore_Matricula *arvore_matricula, int matricula);
 
 void arvore_matricula_exibir(No_Matricula *raiz);
 
-No_Matricula *arvore_matricula_remover_no_esquerdo(No_Matricula *raiz);
-No_Matricula *arvore_matricula_remover_no_direito(No_Matricula *raiz);
-No_Matricula *arvore_matricula_remover_no_raiz(Arvore_Matricula *arvore);
 No_Matricula *arvore_matricula_remover(Arvore_Matricula *arvore, int matricula);

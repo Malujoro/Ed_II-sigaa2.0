@@ -80,9 +80,10 @@ void arvore_matricula_exibir(No_Matricula *raiz)
     }
 }
 
-No_Matricula *arvore_matricula_remover_no_esquerdo(No_Matricula *raiz)
+
+No_Matricula *arvore_matricula_remover_no_aux(No_Matricula **raiz)
 {
-    No_Matricula *no = raiz->esquerdo;
+    No_Matricula *no = (*raiz);
 
     // Caso de 2 filhos
     if(no->esquerdo != NULL && no->direito != NULL)
@@ -93,96 +94,26 @@ No_Matricula *arvore_matricula_remover_no_esquerdo(No_Matricula *raiz)
             while(aux->esquerdo->esquerdo != NULL)
                 aux = aux->esquerdo;
 
-            raiz->esquerdo = arvore_matricula_remover_no_esquerdo(aux);
+            (*raiz) = arvore_matricula_remover_no_aux(&(aux->esquerdo));
         }
         else 
-            raiz->esquerdo = arvore_matricula_remover_no_direito(no);
+            (*raiz) = arvore_matricula_remover_no_aux(&(no->direito));
 
-        raiz->esquerdo->esquerdo = no->esquerdo;
-        raiz->esquerdo->direito = no->direito;
+        (*raiz)->esquerdo = no->esquerdo;
+        (*raiz)->direito = no->direito;
     }
     // Caso de 1 filho (esquerdo)
     else if(no->esquerdo != NULL)
-        raiz->esquerdo = no->esquerdo;
+        (*raiz) = no->esquerdo;
     // Caso de 1 filho (direito)
     else if(no->direito != NULL)
-        raiz->esquerdo = no->direito;
+        (*raiz) = no->direito;
     // Caso de nenhum filho
     else
-        raiz->esquerdo = NULL;
+        (*raiz) = NULL;
 
     no->esquerdo = NULL;
     no->direito = NULL;
-    return no;
-}
-
-No_Matricula *arvore_matricula_remover_no_direito(No_Matricula *raiz)
-{
-    No_Matricula *no = raiz->direito;
-
-    // Caso de 2 filhos
-    if(no->esquerdo != NULL && no->direito != NULL)
-    {
-        if(no->direito->esquerdo != NULL)
-        {
-            No_Matricula *aux = no->direito;
-            while(aux->esquerdo->esquerdo != NULL)
-                aux = aux->esquerdo;
-
-            raiz->direito = arvore_matricula_remover_no_esquerdo(aux);
-        }
-        else 
-            raiz->direito = arvore_matricula_remover_no_direito(no);
-
-        raiz->direito->esquerdo = no->esquerdo;
-        raiz->direito->direito = no->direito;
-    }
-    // Caso de 1 filho (esquerdo)
-    else if(no->esquerdo != NULL)
-        raiz->direito = no->esquerdo;
-    // Caso de 1 filho (direito)
-    else if(no->direito != NULL)
-        raiz->direito = no->direito;
-    // Caso de nenhum filho
-    else
-        raiz->direito = NULL;
-
-    no->esquerdo = NULL;
-    no->direito = NULL;
-    return no;
-}
-
-No_Matricula *arvore_matricula_remover_no_raiz(Arvore_Matricula *arvore)
-{
-    No_Matricula *no = arvore->raiz;
-
-    // Caso de 2 filhos
-    if(no->esquerdo != NULL && no->direito != NULL)
-    {
-        if(no->direito->esquerdo != NULL)
-        {
-            No_Matricula *aux = no->direito;
-            while(aux->esquerdo != NULL && aux->esquerdo->esquerdo != NULL)
-                aux = aux->esquerdo;
-
-            arvore->raiz = arvore_matricula_remover_no_esquerdo(aux);
-        }
-        else 
-            arvore->raiz = arvore_matricula_remover_no_direito(no);
-
-        arvore->raiz->esquerdo = no->esquerdo;
-        arvore->raiz->direito = no->direito;
-    }
-    // Caso de 1 filho (esquerdo)
-    else if(no->esquerdo != NULL)
-        arvore->raiz = no->esquerdo;
-    // Caso de 1 filho (direito)
-    else if(no->direito != NULL)
-        arvore->raiz = no->direito;
-    // Caso de nenhum filho
-    else
-        arvore->raiz = NULL;
-
     return no;
 }
 
@@ -195,14 +126,14 @@ No_Matricula *arvore_matricula_remover_no(No_Matricula *raiz, int matricula)
         if(matricula < raiz->info && raiz->esquerdo != NULL)
         {
             if(matricula == raiz->esquerdo->info)
-                no = arvore_matricula_remover_no_esquerdo(raiz);
+                no = arvore_matricula_remover_no_aux(&(raiz->esquerdo));
             else
                 no = arvore_matricula_remover_no(raiz->esquerdo, matricula);
         }
         else if(matricula > raiz->info && raiz->direito != NULL)
         {
             if(matricula == raiz->direito->info)
-                no = arvore_matricula_remover_no_direito(raiz);
+                no = arvore_matricula_remover_no_aux(&(raiz->direito));
             else
                 no = arvore_matricula_remover_no(raiz->direito, matricula);
         }
@@ -218,7 +149,7 @@ No_Matricula *arvore_matricula_remover(Arvore_Matricula *arvore, int matricula)
     if(arvore->raiz != NULL)
     {
         if(arvore->raiz->info == matricula)
-            no = arvore_matricula_remover_no_raiz(arvore);
+            no = arvore_matricula_remover_no_aux(&(arvore->raiz));
         else
             no = arvore_matricula_remover_no(arvore->raiz, matricula);
     }
