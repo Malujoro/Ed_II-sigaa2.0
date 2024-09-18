@@ -7,27 +7,30 @@ int main()
     for(int cont = 0; cont < 10; cont ++)
     {
 
-        Arvore_Matricula *arvore = arvore_matricula_cria();
+        No_Matricula *raiz = arvore_matricula_cria();
 
         int quant = 10;
         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
 
         for(int i = 0; i < quant; i++)
-            arvore_matricula_add(arvore, mat[i]);
+            arvore_matricula_add(&raiz, mat[i]);
 
-        arvore_matricula_add(arvore, 5);
+        arvore_matricula_add(&raiz, 5);
 
-        printf("Árvore original\n");
-        arvore_matricula_exibir(arvore->raiz);
+        if(cont == 0)
+        {
+            printf("Árvore original\n");
+            arvore_matricula_exibir(raiz);
+        }
 
-        No_Matricula *no_removido = arvore_matricula_remover(arvore, cont);
+        No_Matricula *no_removido = arvore_matricula_remover(&raiz, cont);
         if(no_removido != NULL)
             printf("\nÁrvore após remover %d\n", no_removido->info);
         else
             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-        arvore_matricula_exibir(arvore->raiz);
+        arvore_matricula_exibir(raiz);
 
-        arvore_matricula_desaloca(&arvore);
+        arvore_matricula_desaloca(&raiz);
         printf("\n\n");
     }
     return 0;
