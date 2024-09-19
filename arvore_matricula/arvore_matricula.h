@@ -7,7 +7,7 @@ typedef struct arvore_matricula
 
 // Função para alocar um nó da árvore de disciplinas
 // Retorna o endereço do nó alocado
-Arvore_Matricula *no_aloca();
+Arvore_Matricula *no_matricula_aloca();
 
 // Função para criar o nó da árvore de disciplinas
 // Tem como parâmetro o código da disciplina 

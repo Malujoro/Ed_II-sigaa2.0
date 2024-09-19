@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "arvore_matricula.h"
 
-Arvore_Matricula *no_aloca()
+Arvore_Matricula *no_matricula_aloca()
 {
     Arvore_Matricula *no;
     no = (Arvore_Matricula *) malloc(sizeof(Arvore_Matricula));
     
-    if(no != NULL)
+    if(!no)
     {
         printf("Erro ao alocar nó da árvore de matrículas");
         exit(EXIT_FAILURE);
@@ -19,7 +19,7 @@ Arvore_Matricula *no_aloca()
 Arvore_Matricula *no_matricula_cria(int codigo_disciplina)
 {
     Arvore_Matricula *no;
-    no = no_aloca();
+    no = no_matricula_aloca();
 
     no->info = codigo_disciplina;
     no->esquerdo = NULL;
