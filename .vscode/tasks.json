@@ -12,6 +12,7 @@
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "${fileDirname}/lista_alunos/lista.c",
                 "${fileDirname}/arvore_matricula/arvore_matricula.c",
+                "${fileDirname}/arvore_disciplina/arvore_disciplina.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"
