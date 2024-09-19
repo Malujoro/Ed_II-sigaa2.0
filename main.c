@@ -7,7 +7,7 @@ int main()
     for(int cont = 0; cont < 10; cont ++)
     {
 
-        No_Matricula *raiz = arvore_matricula_cria();
+        Arvore_Matricula *raiz = arvore_matricula_cria();
 
         int quant = 10;
         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
@@ -23,7 +23,7 @@ int main()
             arvore_matricula_exibir(raiz);
         }
 
-        No_Matricula *no_removido = arvore_matricula_remover(&raiz, cont);
+        Arvore_Matricula *no_removido = arvore_matricula_remover(&raiz, cont);
         if(no_removido != NULL)
             printf("\nÁrvore após remover %d\n", no_removido->info);
         else

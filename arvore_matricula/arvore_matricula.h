@@ -1,17 +1,41 @@
-typedef struct no_matricula
+typedef struct arvore_matricula
 {
     int info;
-    struct no_matricula *esquerdo;
-    struct no_matricula *direito;
-} No_Matricula;
+    struct arvore_matricula *esquerdo;
+    struct arvore_matricula *direito;
+} Arvore_Matricula;
 
-No_Matricula *no_matricula_cria(int matricula);
-No_Matricula *arvore_matricula_cria();
-void arvore_matricula_desaloca(No_Matricula **raiz);
+// Função para alocar um nó da árvore de disciplinas
+// Retorna o endereço do nó alocado
+Arvore_Matricula *no_aloca();
 
-void arvore_matricula_add(No_Matricula **raiz, int matricula);
+// Função para criar o nó da árvore de disciplinas
+// Tem como parâmetro o código da disciplina 
+// Retorna o endereço do nó criado
+Arvore_Matricula *no_matricula_cria(int codigo_disciplina);
 
-void arvore_matricula_exibir(No_Matricula *raiz);
+// Função para criar a árvore de disciplinas
+// Retorna a "árvore vazia" (null)
+Arvore_Matricula *arvore_matricula_cria();
 
-No_Matricula *arvore_matricula_remover_no(No_Matricula **raiz);
-No_Matricula *arvore_matricula_remover(No_Matricula **raiz, int matricula);
+// Função para desalocar a árvore de disciplinas
+// Tem como parâmetro a referência da raiz da árvore
+void arvore_matricula_desaloca(Arvore_Matricula **raiz);
+
+// Função para adicionar uma informação na árvore de disciplinas (criando um nó)
+// Tem como parâmetro a referência da raiz da árvore e o código da disciplina a ser adicionada
+void arvore_matricula_add(Arvore_Matricula **raiz, int codigo_disciplina);
+
+// Função para exibir a árvore de disciplinas no formato "em ordem"
+// Tem como parâmetro a referência da raiz da árvore
+void arvore_matricula_exibir(Arvore_Matricula *raiz);
+
+// Função para remover o nó da árvore de disciplinas
+// Tem como parâmetro a referência da raiz da árvore
+// Retorna o nó removido (ou null caso não encontre)
+Arvore_Matricula *arvore_matricula_remover_no(Arvore_Matricula **raiz);
+
+// Função para remover um nó da árvore de disciplinas
+// Tem como parâmetro a referência da raiz da árvore e o código da disciplina a ser removida
+// Retorna o nó removido (ou null caso não encontre)
+Arvore_Matricula *arvore_matricula_remover(Arvore_Matricula **raiz, int codigo_disciplina);

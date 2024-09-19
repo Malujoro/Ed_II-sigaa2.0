@@ -2,23 +2,37 @@
 #include <stdlib.h>
 #include "arvore_matricula.h"
 
-No_Matricula *no_matricula_cria(int matricula)
+Arvore_Matricula *no_aloca()
 {
-    No_Matricula *no;
-    no = (No_Matricula *) malloc(sizeof(No_Matricula));
+    Arvore_Matricula *no;
+    no = (Arvore_Matricula *) malloc(sizeof(Arvore_Matricula));
+    
+    if(no != NULL)
+    {
+        printf("Erro ao alocar nó da árvore de matrículas");
+        exit(EXIT_FAILURE);
+    }
 
-    no->info = matricula;
+    return no;
+}
+
+Arvore_Matricula *no_matricula_cria(int codigo_disciplina)
+{
+    Arvore_Matricula *no;
+    no = no_aloca();
+
+    no->info = codigo_disciplina;
     no->esquerdo = NULL;
     no->direito = NULL;
     return no;
 }
 
-No_Matricula *arvore_matricula_cria()
+Arvore_Matricula *arvore_matricula_cria()
 {
     return NULL;
 }
 
-void arvore_matricula_desaloca(No_Matricula **raiz)
+void arvore_matricula_desaloca(Arvore_Matricula **raiz)
 {
     if((*raiz) != NULL)
     {
@@ -33,20 +47,20 @@ void arvore_matricula_desaloca(No_Matricula **raiz)
     }
 }
 
-void arvore_matricula_add(No_Matricula **raiz, int matricula)
+void arvore_matricula_add(Arvore_Matricula **raiz, int codigo_disciplina)
 {
     if((*raiz) == NULL)
-        (*raiz) = no_matricula_cria(matricula);
+        (*raiz) = no_matricula_cria(codigo_disciplina);
     else
     {
-        if(matricula < (*raiz)->info)
-            arvore_matricula_add(&(*raiz)->esquerdo, matricula);
+        if(codigo_disciplina < (*raiz)->info)
+            arvore_matricula_add(&(*raiz)->esquerdo, codigo_disciplina);
         else
-            arvore_matricula_add(&(*raiz)->direito, matricula);
+            arvore_matricula_add(&(*raiz)->direito, codigo_disciplina);
     }
 }
 
-void arvore_matricula_exibir(No_Matricula *raiz)
+void arvore_matricula_exibir(Arvore_Matricula *raiz)
 {
     if(raiz != NULL)
     {
@@ -57,9 +71,9 @@ void arvore_matricula_exibir(No_Matricula *raiz)
 }
 
 
-No_Matricula *arvore_matricula_remover_no(No_Matricula **raiz)
+Arvore_Matricula *arvore_matricula_remover_no(Arvore_Matricula **raiz)
 {
-    No_Matricula *no;
+    Arvore_Matricula *no;
     no = (*raiz);
 
     // Caso de 2 filhos
@@ -67,7 +81,7 @@ No_Matricula *arvore_matricula_remover_no(No_Matricula **raiz)
     {
         if(no->direito->esquerdo != NULL)
         {
-            No_Matricula *aux;
+            Arvore_Matricula *aux;
             aux = no->direito;
             while(aux->esquerdo->esquerdo != NULL)
                 aux = aux->esquerdo;
@@ -95,19 +109,19 @@ No_Matricula *arvore_matricula_remover_no(No_Matricula **raiz)
     return no;
 }
 
-No_Matricula *arvore_matricula_remover(No_Matricula **raiz, int matricula)
+Arvore_Matricula *arvore_matricula_remover(Arvore_Matricula **raiz, int codigo_disciplina)
 {
-    No_Matricula *no;
+    Arvore_Matricula *no;
     no = NULL;
 
     if((*raiz) != NULL)
     {
-        if((*raiz)->info == matricula)
+        if((*raiz)->info == codigo_disciplina)
             no = arvore_matricula_remover_no(&(*raiz));
-        else if (matricula < (*raiz)->info)
-            no = arvore_matricula_remover(&((*raiz)->esquerdo), matricula);
-        else if (matricula > (*raiz)->info)
-            no = arvore_matricula_remover(&((*raiz)->direito), matricula);
+        else if (codigo_disciplina < (*raiz)->info)
+            no = arvore_matricula_remover(&((*raiz)->esquerdo), codigo_disciplina);
+        else if (codigo_disciplina > (*raiz)->info)
+            no = arvore_matricula_remover(&((*raiz)->direito), codigo_disciplina);
     }
     
     return no;
