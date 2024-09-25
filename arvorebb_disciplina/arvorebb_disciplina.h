@@ -6,53 +6,53 @@ typedef struct disciplina
     int carga_horaria;
 } Disciplina;
 
-typedef struct arvore_disciplina
+typedef struct arvorebb_disciplina
 {
     Disciplina info;
-    struct arvore_disciplina *esquerdo;
-    struct arvore_disciplina *direito;
-} Arvore_Disciplina;
+    struct arvorebb_disciplina *esquerdo;
+    struct arvorebb_disciplina *direito;
+} ArvoreBB_Disciplina;
 
 /*
     Função para alocar um nó da árvore de disciplinas
     Retorna o endereço do nó alocado
 */
-Arvore_Disciplina *no_disciplina_aloca();
+ArvoreBB_Disciplina *no_disciplina_aloca();
 
 /*
     Função para criar o nó da árvore de disciplinas
     Tem como parâmetro a struct da disciplina 
     Retorna o endereço do nó criado
 */
-Arvore_Disciplina *no_disciplina_cria(Disciplina disciplina);
+ArvoreBB_Disciplina *no_disciplina_cria(Disciplina disciplina);
 
 /*
     Função para criar a árvore de disciplinas
     Retorna a "árvore vazia" (null)
 */
-Arvore_Disciplina *arvore_disciplina_cria();
+ArvoreBB_Disciplina *arvorebb_disciplina_cria();
 
 /*
     Função para desalocar a árvore de disciplinas
     Tem como parâmetro a referência da raiz da árvore
 */
-void arvore_disciplina_desaloca(Arvore_Disciplina **raiz);
+void arvorebb_disciplina_desaloca(ArvoreBB_Disciplina **raiz);
 
 /*
     Função para adicionar uma informação na árvore de disciplinas (criando um nó)
     Tem como parâmetro a referência da raiz da árvore e a struct da disciplina a ser adicionada
 */
-int arvore_disciplina_add(Arvore_Disciplina **raiz, Disciplina disciplina);
+int arvorebb_disciplina_add(ArvoreBB_Disciplina **raiz, Disciplina disciplina);
 
 /*
     Função para exibir a árvore de disciplinas no formato "em ordem"
     Tem como parâmetro a referência da raiz da árvore
 */
-void arvore_disciplina_exibir(Arvore_Disciplina *raiz);
+void arvorebb_disciplina_exibir(ArvoreBB_Disciplina *raiz);
 
 /*
     Função para remover um nó da árvore de disciplinas
     Tem como parâmetro a referência da raiz da árvore e a struct da disciplina a ser removida
     Retorna o nó removido (ou null caso não encontre)
 */
-Arvore_Disciplina *arvore_disciplina_remover(Arvore_Disciplina **raiz, Disciplina disciplina);
+int arvorebb_disciplina_remover(ArvoreBB_Disciplina **raiz, int codigo_disciplina);

@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include "lista_alunos/lista.h"
-#include "arvore_matricula/arvore_matricula.h"
-#include "arvore_disciplina/arvore_disciplina.h"
+#include "arvorebb_matricula/arvorebb_matricula.h"
+#include "arvorebb_disciplina/arvorebb_disciplina.h"
 
 int main()
 {
     for(int cont = 0; cont < 10; cont ++)
     {
 
-        Arvore_Disciplina *raiz = arvore_disciplina_cria();
+        ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
         Disciplina disciplina;
 
         int quant = 10;
@@ -24,23 +24,23 @@ int main()
             disciplina.carga_horaria = mat[i] + 100;
 
             disciplinas[i] = disciplina;
-            arvore_disciplina_add(&raiz, disciplina);
+            arvorebb_disciplina_add(&raiz, disciplina);
         }
 
         if(cont == 0)
         {
             printf("Árvore original\n");
-            arvore_disciplina_exibir(raiz);
+            arvorebb_disciplina_exibir(raiz);
         }
 
-        Arvore_Disciplina *no_removido = arvore_disciplina_remover(&raiz, disciplinas[cont]);
-        if(no_removido != NULL)
-            printf("\nÁrvore após remover %d\n", no_removido->info.codigo_disciplina);
+        int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
+        if(removeu)
+            printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
         else
             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-        arvore_disciplina_exibir(raiz);
+        arvorebb_disciplina_exibir(raiz);
 
-        arvore_disciplina_desaloca(&raiz);
+        arvorebb_disciplina_desaloca(&raiz);
         printf("\n\n");
     }
     return 0;

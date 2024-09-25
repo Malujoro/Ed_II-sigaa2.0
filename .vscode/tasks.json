@@ -11,8 +11,8 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "${fileDirname}/lista_alunos/lista.c",
-                "${fileDirname}/arvore_matricula/arvore_matricula.c",
-                "${fileDirname}/arvore_disciplina/arvore_disciplina.c",
+                "${fileDirname}/arvorebb_matricula/arvorebb_matricula.c",
+                "${fileDirname}/arvorebb_disciplina/arvorebb_disciplina.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"
