@@ -1,36 +1,46 @@
 #include <stdio.h>
 #include "lista_alunos/lista.h"
-#include "arvore_matricula/arvore_matricula.h"
+#include "arvorebb_matricula/arvorebb_matricula.h"
+#include "arvorebb_disciplina/arvorebb_disciplina.h"
 
 int main()
 {
     for(int cont = 0; cont < 10; cont ++)
     {
 
-        No_Matricula *raiz = arvore_matricula_cria();
+        ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
+        Disciplina disciplina;
 
         int quant = 10;
         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
+        char nomes[][100] = {"Alef", "Emilly", "Flávio", "Gabriel", "Ghabriel", "Jonas", "Marcio", "Mateus","Rayssa","Walisson"};
+        Disciplina disciplinas[10];
 
         for(int i = 0; i < quant; i++)
-            arvore_matricula_add(&raiz, mat[i]);
+        {
+            disciplina.codigo_disciplina = mat[i];
+            disciplina.nome_disciplina = nomes[mat[i]];
+            disciplina.periodo = mat[i] + 10;
+            disciplina.carga_horaria = mat[i] + 100;
 
-        arvore_matricula_add(&raiz, 5);
+            disciplinas[i] = disciplina;
+            arvorebb_disciplina_add(&raiz, disciplina);
+        }
 
         if(cont == 0)
         {
             printf("Árvore original\n");
-            arvore_matricula_exibir(raiz);
+            arvorebb_disciplina_exibir(raiz);
         }
 
-        No_Matricula *no_removido = arvore_matricula_remover(&raiz, cont);
-        if(no_removido != NULL)
-            printf("\nÁrvore após remover %d\n", no_removido->info);
+        int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
+        if(removeu)
+            printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
         else
             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-        arvore_matricula_exibir(raiz);
+        arvorebb_disciplina_exibir(raiz);
 
-        arvore_matricula_desaloca(&raiz);
+        arvorebb_disciplina_desaloca(&raiz);
         printf("\n\n");
     }
     return 0;

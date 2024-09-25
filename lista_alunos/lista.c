@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include "lista.h"
 
-// Função que retorna "qual palavra vem primeiro" em uma ordem alfabética crescente
-// Retorna 0 caso a primeira palavra "venha antes"
-// Retorna 1 caso a segunda palavra "venha antes"
-// TODO pensar em um nome melhor
-int ordem_palavra(char *palavra1, char *palavra2)
+int compara_string_crescente(char *palavra1, char *palavra2)
 {
     int i = 0, retorno;
 
@@ -21,9 +17,24 @@ int ordem_palavra(char *palavra1, char *palavra2)
     return retorno;
 }
 
-No_Lista *no_lista_cria(Aluno aluno)
+Lista *no_lista_aloca()
 {
-    No_Lista *no = (No_Lista *) malloc(sizeof(No_Lista));
+    Lista *no;
+    no = (Lista *) malloc(sizeof(Lista));
+    
+    if(!no)
+    {
+        printf("Erro ao alocar nó da lista de alunos");
+        exit(EXIT_FAILURE);
+    }
+
+    return no;
+}
+
+Lista *no_lista_cria(Aluno aluno)
+{
+    Lista *no;
+    no = no_lista_aloca();
     no->info = aluno;
     no->proximo = NULL;
     return no;
@@ -31,48 +42,35 @@ No_Lista *no_lista_cria(Aluno aluno)
 
 Lista *lista_cria()
 {
-    Lista *lista = (Lista *) malloc(sizeof(Lista));
-    lista->primeiro = NULL;
-    return lista;
-}
-
-void no_lista_desaloca(No_Lista **no)
-{
-    free(*no);
-    *no = NULL;
+    return NULL;
 }
 
 void lista_desaloca(Lista **lista)
 {
-    No_Lista *no = (*lista)->primeiro;
-
-    while(no != NULL)
-    {
-        No_Lista *aux = no->proximo;
-        no_lista_desaloca(&no);
-        no = aux;
-    }
-
+    if((*lista)->proximo != NULL)
+        lista_desaloca(&(*lista)->proximo);
     free(*lista);
     *lista = NULL;
 }
 
-void lista_add_ordenado(Lista *lista, Aluno aluno)
+void lista_add_ordenado(Lista **lista, Aluno aluno)
 {
-    No_Lista *no = no_lista_cria(aluno);
+    Lista *no;
+    no = no_lista_cria(aluno);
 
     // Situação em que a lista está vazia,
     // ou o novo aluno será o primeiro da lista
-    if(lista->primeiro == NULL || ordem_palavra(lista->primeiro->info.nome, no->info.nome))
+    if((*lista) == NULL || compara_string_crescente((*lista)->info.nome, no->info.nome))
     {
-        no->proximo = lista->primeiro;
-        lista->primeiro = no;
+        no->proximo = (*lista);
+        (*lista) = no;
     }
     else
     {
-        No_Lista *aux = lista->primeiro;
+        Lista *aux;
+        aux = (*lista);
 
-        while(aux->proximo != NULL && ordem_palavra(no->info.nome, aux->proximo->info.nome))
+        while(aux->proximo != NULL && compara_string_crescente(no->info.nome, aux->proximo->info.nome))
             aux = aux->proximo;
 
         no->proximo = aux->proximo;
@@ -84,7 +82,8 @@ void lista_exibir(Lista *lista)
 {
     printf("Lista\n");
 
-    No_Lista *no = lista->primeiro;
+    Lista *no;
+    no = lista;
     while(no != NULL)
     {
         printf("Matrícula: %d | Nome: %s | Código do curso: %d\n", no->info.matricula, no->info.nome, no->info.codigo_curso);
@@ -128,13 +127,13 @@ void lista_exibir(Lista *lista)
 //         aluno1.codigo_curso = 100 + i;
 //         aluno1.matricula = 999 - i;
 //         aluno1.nome = palavras[i % 102];
-//         lista_add_ordenado(lista, aluno1);
+//         lista_add_ordenado(&lista, aluno1);
 //     }
 
 //     lista_exibir(lista);
 //     lista_desaloca(&lista);
 
-//     // int primeira = ordem_palavra(palavras[0], palavras[1]);
+//     // int primeira = compara_string_crescente(palavras[0], palavras[1]);
 //     // int segunda = 1 - primeira;
 //     // printf("[%s -> %s]\n", palavras[primeira], palavras[segunda]);
 //     return 0;
