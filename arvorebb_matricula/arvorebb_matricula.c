@@ -27,6 +27,7 @@ ArvoreBB_Matricula *no_matricula_cria(int codigo_matricula)
     return no;
 }
 
+// TODO talvez remover a função de criar
 ArvoreBB_Matricula *arvorebb_matricula_cria()
 {
     return NULL;

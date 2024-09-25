@@ -13,6 +13,7 @@
                 "${fileDirname}/lista_alunos/lista.c",
                 "${fileDirname}/arvorebb_matricula/arvorebb_matricula.c",
                 "${fileDirname}/arvorebb_disciplina/arvorebb_disciplina.c",
+                "${fileDirname}/arvorebb_curso/arvorebb_curso.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"

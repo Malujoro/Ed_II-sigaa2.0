@@ -2,6 +2,7 @@
 #include "lista_alunos/lista.h"
 #include "arvorebb_matricula/arvorebb_matricula.h"
 #include "arvorebb_disciplina/arvorebb_disciplina.h"
+#include "arvorebb_curso/arvorebb_curso.h"
 
 int main()
 {
