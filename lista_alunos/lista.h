@@ -1,10 +1,16 @@
+#ifndef LISTA_H
+#define LISTA_H
+
+#include "../arvorebb_notas/arvorebb_notas.h"
+#include "../arvorebb_matricula/arvorebb_matricula.h"
+
 typedef struct aluno
 {
     int matricula;
     char *nome;
     int codigo_curso;
-    // Arvore Notas nota;
-    // Arvore Matricula matricula;
+    ArvoreBB_Nota arvbb_nota;
+    ArvoreBB_Matricula arvbb_matricula;
 } Aluno;
 
 typedef struct lista
@@ -43,3 +49,5 @@ void lista_add_ordenado(Lista **lista, Aluno aluno);
 // Função para exibir a lista de alunos no formato "em ordem"
 // Tem como parâmetro a referência do primeiro elemento da lista
 void lista_exibir(Lista *lista);
+
+#endif

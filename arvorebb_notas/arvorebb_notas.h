@@ -1,3 +1,6 @@
+#ifndef ARVOREBB_NOTAS_H
+#define ARVOREBB_NOTAS_H
+
 typedef struct nota
 {
     int codigo_disciplina;
@@ -56,3 +59,5 @@ void arvorebb_nota_exibir(ArvoreBB_Nota *raiz);
     Retorna o nó removido (ou null caso não encontre)
 */
 int arvorebb_nota_remover(ArvoreBB_Nota **raiz, int codigo_disciplina);
+
+#endif

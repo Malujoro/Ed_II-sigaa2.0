@@ -1,3 +1,6 @@
+#ifndef ARVOREBB_MATRICULA_H
+#define ARVOREBB_MATRICULA_H
+
 typedef struct arvorebb_matricula
 {
     int info;
@@ -48,3 +51,5 @@ void arvorebb_matricula_exibir(ArvoreBB_Matricula *raiz);
     Retorna o nó removido (ou null caso não encontre)
 */
 int arvorebb_matricula_remover(ArvoreBB_Matricula **raiz, int codigo_disciplina);
+
+#endif

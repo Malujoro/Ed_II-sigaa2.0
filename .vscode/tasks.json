@@ -14,6 +14,7 @@
                 "${fileDirname}/arvorebb_matricula/arvorebb_matricula.c",
                 "${fileDirname}/arvorebb_disciplina/arvorebb_disciplina.c",
                 "${fileDirname}/arvorebb_curso/arvorebb_curso.c",
+                "${fileDirname}/arvorebb_notas/arvorebb_notas.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"

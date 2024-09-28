@@ -147,45 +147,45 @@ int arvorebb_nota_remover(ArvoreBB_Nota **raiz, int codigo_disciplina)
     return removeu;
 }
 
-int main()
-{
-    for(int cont = 0; cont < 10; cont ++)
-    {
+// int main()
+// {
+//     for(int cont = 0; cont < 10; cont ++)
+//     {
 
-        ArvoreBB_Nota *raiz = arvorebb_nota_cria();
-        Nota nota;
+//         ArvoreBB_Nota *raiz = arvorebb_nota_cria();
+//         Nota nota;
 
-        int quant = 10;
-        int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
-        Nota notas[10];
+//         int quant = 10;
+//         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
+//         Nota notas[10];
 
-        for(int i = 0; i < quant; i++)
-        {
-            nota.codigo_disciplina = mat[i];
-            nota.semestre = mat[i] * 10;
-            nota.nota_final = mat[i] * 100;
-            nota.carga_horaria = mat[i] * 1000;
+//         for(int i = 0; i < quant; i++)
+//         {
+//             nota.codigo_disciplina = mat[i];
+//             nota.semestre = mat[i] * 10;
+//             nota.nota_final = mat[i] * 100;
+//             nota.carga_horaria = mat[i] * 1000;
 
-            notas[i] = nota;
-            arvorebb_nota_add(&raiz, nota);
-        }
+//             notas[i] = nota;
+//             arvorebb_nota_add(&raiz, nota);
+//         }
 
-        if(cont == 0)
-        {
-            printf("Árvore original\n");
-            arvorebb_nota_exibir(raiz);
-            printf("\n");
-        }
+//         if(cont == 0)
+//         {
+//             printf("Árvore original\n");
+//             arvorebb_nota_exibir(raiz);
+//             printf("\n");
+//         }
 
-        int removeu = arvorebb_nota_remover(&raiz, notas[cont].codigo_disciplina);
-        if(removeu)
-            printf("\nÁrvore após remover %d\n", notas[cont].codigo_disciplina);
-        else
-            printf("\nÁrvore após remover [Elemento não encontrado]\n");
-        arvorebb_nota_exibir(raiz); 
+//         int removeu = arvorebb_nota_remover(&raiz, notas[cont].codigo_disciplina);
+//         if(removeu)
+//             printf("\nÁrvore após remover %d\n", notas[cont].codigo_disciplina);
+//         else
+//             printf("\nÁrvore após remover [Elemento não encontrado]\n");
+//         arvorebb_nota_exibir(raiz); 
 
-        arvorebb_nota_desaloca(&raiz);
-        printf("\n\n");
-    }
-    return 0;
-}
+//         arvorebb_nota_desaloca(&raiz);
+//         printf("\n\n");
+//     }
+//     return 0;
+// }

@@ -1,3 +1,6 @@
+#ifndef ARVOREBB_DISCIPLINA_H
+#define ARVOREBB_DISCIPLINA_H
+
 typedef struct disciplina
 {
     int codigo_disciplina;
@@ -56,3 +59,5 @@ void arvorebb_disciplina_exibir(ArvoreBB_Disciplina *raiz);
     Retorna o nó removido (ou null caso não encontre)
 */
 int arvorebb_disciplina_remover(ArvoreBB_Disciplina **raiz, int codigo_disciplina);
+
+#endif
