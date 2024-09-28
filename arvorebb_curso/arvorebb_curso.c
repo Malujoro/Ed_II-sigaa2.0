@@ -3,8 +3,6 @@
 #include <string.h>
 #include "arvorebb_curso.h"
 
-// TODO adicionar função de alocação
-
 ArvoreBB_Curso *no_curso_aloca()
 {
     ArvoreBB_Curso *no;
@@ -19,13 +17,11 @@ ArvoreBB_Curso *no_curso_aloca()
     return no;
 }
 
-ArvoreBB_Curso *no_curso_cria(int codigo, char *nome, int qt_per)
+ArvoreBB_Curso *no_curso_cria(Curso curso)
 {
     ArvoreBB_Curso *no = (ArvoreBB_Curso *)malloc(sizeof(ArvoreBB_Curso));
 
-    no->info.cod = codigo;
-    no->info.qt_periodos = qt_per;
-    no->info.nome = nome;
+    no->info = curso;
     no->direito = NULL;
     no->esquerdo = NULL;
 
@@ -53,16 +49,16 @@ void arvorebb_curso_desaloca(ArvoreBB_Curso **raiz)
     }
 }
 
-int arvorebb_curso_add(ArvoreBB_Curso **raiz, Curso *info)
+int arvorebb_curso_add(ArvoreBB_Curso **raiz, Curso info)
 {
     int inseriu = 1;
     if ((*raiz) == NULL)
-        (*raiz) = no_curso_cria(info->cod, info->nome, info->qt_periodos);
+        (*raiz) = no_curso_cria(info);
     else
     {
-        if (info->cod < (*raiz)->info.cod)
+        if (info.cod < (*raiz)->info.cod)
             arvorebb_curso_add(&(*raiz)->esquerdo, info);
-        else if (info->cod > (*raiz)->info.cod)
+        else if (info.cod > (*raiz)->info.cod)
             arvorebb_curso_add(&(*raiz)->direito, info);
         else
             inseriu = 0;
@@ -158,6 +154,7 @@ int main()
     {
 
         ArvoreBB_Curso *raiz = arvorebb_curso_cria();
+        Curso curso;
 
         int quant = 10;
         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
@@ -166,13 +163,12 @@ int main()
 
         for(int i = 0; i < quant; i++)
         {
-            Curso curso;
             curso.cod = mat[i];
             curso.nome = nomes[mat[i]];
             curso.qt_periodos = mat[i] + 10;
 
             cursos[i] = curso;
-            arvorebb_curso_add(&raiz, &curso);
+            arvorebb_curso_add(&raiz, curso);
         }
 
         if(cont == 0)
