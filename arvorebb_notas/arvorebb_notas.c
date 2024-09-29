@@ -73,7 +73,6 @@ void arvorebb_nota_exibir(ArvoreBB_Nota *raiz)
         printf("Código: %d \n", raiz->info.codigo_disciplina);
         printf("Semestre: %d\n", raiz->info.semestre);
         printf("Nota final: %.1f\n", raiz->info.nota_final);
-        printf("Carga horária: %d\n\n", raiz->info.carga_horaria);
         arvorebb_nota_exibir(raiz->direito);
     }
 }

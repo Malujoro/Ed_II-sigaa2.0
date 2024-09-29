@@ -7,7 +7,7 @@ typedef struct curso
     int cod;
     char *nome;
     int qt_periodos;
-    ArvoreBB_Disciplina arvbb_disciplina;
+    ArvoreBB_Disciplina *arvbb_disciplina;
 } Curso;
 
 typedef struct arvorebb_curso
@@ -26,6 +26,8 @@ ArvoreBB_Curso *arvorebb_curso_cria();
 void arvorebb_curso_desaloca(ArvoreBB_Curso **raiz);
 
 int arvorebb_curso_add(ArvoreBB_Curso **raiz, Curso info);
+
+ArvoreBB_Curso *arvorebb_curso_buscar(ArvoreBB_Curso *raiz, int codigo);
 
 void arvorebb_curso_exibir(ArvoreBB_Curso *raiz);
 

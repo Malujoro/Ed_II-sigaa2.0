@@ -24,7 +24,7 @@ ArvoreBB_Curso *no_curso_cria(Curso curso)
     no->info = curso;
     no->direito = NULL;
     no->esquerdo = NULL;
-
+    
     return no;
 }
 
@@ -44,6 +44,9 @@ void arvorebb_curso_desaloca(ArvoreBB_Curso **raiz)
         if ((*raiz)->direito != NULL)
             arvorebb_curso_desaloca(&((*raiz)->direito));
         
+        free((*raiz)->info.nome);
+        (*raiz)->info.nome = NULL;
+
         free(*raiz);
         *raiz = NULL;
     }
@@ -65,6 +68,25 @@ int arvorebb_curso_add(ArvoreBB_Curso **raiz, Curso info)
     }
 
     return inseriu;
+}
+
+ArvoreBB_Curso *arvorebb_curso_buscar(ArvoreBB_Curso *raiz, int codigo)
+{
+    ArvoreBB_Curso *retorno;
+
+    if(raiz != NULL)
+    {
+        if(codigo == raiz->info.cod)
+            retorno = raiz;
+        else if(codigo < raiz->info.cod)
+            retorno = arvorebb_curso_buscar(raiz->esquerdo, codigo);
+        else if(codigo > raiz->info.cod)
+            retorno = arvorebb_curso_buscar(raiz->direito, codigo);
+    }
+    else
+        retorno = NULL;
+    
+    return retorno;
 }
 
 void arvorebb_curso_exibir(ArvoreBB_Curso *raiz)
@@ -148,45 +170,53 @@ int arvorebb_curso_remover(ArvoreBB_Curso **raiz, int codigo)
     return removeu;
 }
 
-// int main()
-// {
-//     for(int cont = 0; cont < 10; cont ++)
-//     {
+int main()
+{
+    for(int cont = 0; cont < 10; cont ++)
+    {
 
-//         ArvoreBB_Curso *raiz = arvorebb_curso_cria();
-//         Curso curso;
+        ArvoreBB_Curso *raiz = arvorebb_curso_cria();
+        Curso curso;
 
-//         int quant = 10;
-//         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
-//         char nomes[][100] = {"Alef", "Emilly", "Flávio", "Gabriel", "Ghabriel", "Jonas", "Marcio", "Mateus","Rayssa","Walisson"};
-//         Curso cursos[10];
+        int quant = 10;
+        int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
+        
+        char **nomes = (char **) malloc(sizeof(char *) * quant);
+        for(int i = 0; i < quant; i++)
+        {
+            nomes[i] = (char *) malloc(sizeof(char) * 100);
+            scanf("%s", nomes[i]);
+            while(getchar() != '\n');
+        }
 
-//         for(int i = 0; i < quant; i++)
-//         {
-//             curso.cod = mat[i];
-//             curso.nome = nomes[mat[i]];
-//             curso.qt_periodos = mat[i] + 10;
+        Curso cursos[10];
 
-//             cursos[i] = curso;
-//             arvorebb_curso_add(&raiz, curso);
-//         }
+        for(int i = 0; i < quant; i++)
+        {
+            curso.cod = mat[i];
+            curso.nome = nomes[mat[i]];
+            curso.qt_periodos = mat[i] + 10;
 
-//         if(cont == 0)
-//         {
-//             printf("Árvore original\n");
-//             arvorebb_curso_exibir(raiz);
-//             printf("\n");
-//         }
+            cursos[i] = curso;
+            arvorebb_curso_add(&raiz, curso);
+        }
 
-//         int removeu = arvorebb_curso_remover(&raiz, cursos[cont].cod);
-//         if(removeu)
-//             printf("\nÁrvore após remover %d\n", cursos[cont].cod);
-//         else
-//             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-//         arvorebb_curso_exibir(raiz); 
+        if(cont == 0)
+        {
+            printf("Árvore original\n");
+            arvorebb_curso_exibir(raiz);
+            printf("\n");
+        }
 
-//         arvorebb_curso_desaloca(&raiz);
-//         printf("\n\n");
-//     }
-//     return 0;
-// }
+        int removeu = arvorebb_curso_remover(&raiz, cursos[cont].cod);
+        if(removeu)
+            printf("\nÁrvore após remover %d\n", cursos[cont].cod);
+        else
+            printf("\nÁrvore após remover [Elemento não encontrado]\n");
+        arvorebb_curso_exibir(raiz); 
+
+        arvorebb_curso_desaloca(&raiz);
+        printf("\n\n");
+    }
+    return 0;
+}

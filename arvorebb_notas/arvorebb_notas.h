@@ -6,7 +6,6 @@ typedef struct nota
     int codigo_disciplina;
     int semestre;
     float nota_final;
-    int carga_horaria;
 } Nota;
 
 typedef struct arvorebb_nota

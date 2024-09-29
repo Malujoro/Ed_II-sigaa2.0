@@ -49,6 +49,10 @@ void lista_desaloca(Lista **lista)
 {
     if((*lista)->proximo != NULL)
         lista_desaloca(&(*lista)->proximo);
+
+    free((*lista)->info.nome);
+    (*lista)->info.nome = NULL;
+    
     free(*lista);
     *lista = NULL;
 }
@@ -89,6 +93,16 @@ void lista_exibir(Lista *lista)
         printf("Matrícula: %d | Nome: %s | Código do curso: %d\n", no->info.matricula, no->info.nome, no->info.codigo_curso);
         no = no->proximo;
     }
+}
+ 
+Lista *lista_alunos_buscar(Lista *lista, int matricula)
+{
+    Lista *aluno = lista;
+    
+    while(aluno != NULL && aluno->info.matricula != matricula)
+        aluno = aluno->proximo;
+
+    return aluno;
 }
 
 // TODO adicionar a verificação na de curso existente hora de cadastrar o aluno

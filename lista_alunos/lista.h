@@ -9,8 +9,8 @@ typedef struct aluno
     int matricula;
     char *nome;
     int codigo_curso;
-    ArvoreBB_Nota arvbb_nota;
-    ArvoreBB_Matricula arvbb_matricula;
+    ArvoreBB_Nota *arvbb_nota;
+    ArvoreBB_Matricula *arvbb_matricula;
 } Aluno;
 
 typedef struct lista
@@ -49,5 +49,7 @@ void lista_add_ordenado(Lista **lista, Aluno aluno);
 // Função para exibir a lista de alunos no formato "em ordem"
 // Tem como parâmetro a referência do primeiro elemento da lista
 void lista_exibir(Lista *lista);
+
+Lista *lista_alunos_buscar(Lista *lista, int matricula);
 
 #endif

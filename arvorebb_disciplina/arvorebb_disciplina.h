@@ -53,6 +53,8 @@ int arvorebb_disciplina_add(ArvoreBB_Disciplina **raiz, Disciplina disciplina);
 */
 void arvorebb_disciplina_exibir(ArvoreBB_Disciplina *raiz);
 
+ArvoreBB_Disciplina *arvorebb_disciplina_buscar(ArvoreBB_Disciplina *raiz, int codigo);
+
 /*
     Função para remover um nó da árvore de disciplinas
     Tem como parâmetro a referência da raiz da árvore e a struct da disciplina a ser removida

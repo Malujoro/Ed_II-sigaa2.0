@@ -42,6 +42,9 @@ void arvorebb_disciplina_desaloca(ArvoreBB_Disciplina **raiz)
         if ((*raiz)->direito != NULL)
             arvorebb_disciplina_desaloca(&((*raiz)->direito));
 
+        free((*raiz)->info.nome_disciplina);
+        (*raiz)->info.nome_disciplina = NULL;
+
         free(*raiz);
         *raiz = NULL;
     }
@@ -63,6 +66,25 @@ int arvorebb_disciplina_add(ArvoreBB_Disciplina **raiz, Disciplina disciplina)
     }
 
     return inseriu;
+}
+
+ArvoreBB_Disciplina *arvorebb_disciplina_buscar(ArvoreBB_Disciplina *raiz, int codigo)
+{
+    ArvoreBB_Disciplina *retorno;
+
+    if(raiz != NULL)
+    {
+        if(codigo == raiz->info.codigo_disciplina)
+            retorno = raiz;
+        else if(codigo < raiz->info.codigo_disciplina)
+            retorno = arvorebb_disciplina_buscar(raiz->esquerdo, codigo);
+        else if(codigo > raiz->info.codigo_disciplina)
+            retorno = arvorebb_disciplina_buscar(raiz->direito, codigo);
+    }
+    else
+        retorno = NULL;
+    
+    return retorno;
 }
 
 void arvorebb_disciplina_exibir(ArvoreBB_Disciplina *raiz)
@@ -147,46 +169,53 @@ int arvorebb_disciplina_remover(ArvoreBB_Disciplina **raiz, int codigo_disciplin
     return removeu;
 }
 
-// int main()
-// {
-//     for(int cont = 0; cont < 10; cont ++)
-//     {
+int main()
+{
+    for(int cont = 0; cont < 10; cont ++)
+    {
 
-//         ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
-//         Disciplina disciplina;
+        ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
+        Disciplina disciplina;
 
-//         int quant = 10;
-//         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
-//         char nomes[][100] = {"Alef", "Emilly", "Flávio", "Gabriel", "Ghabriel", "Jonas", "Marcio", "Mateus","Rayssa","Walisson"};
-//         Disciplina disciplinas[10];
+        int quant = 10;
+        int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
 
-//         for(int i = 0; i < quant; i++)
-//         {
-//             disciplina.codigo_disciplina = mat[i];
-//             disciplina.nome_disciplina = nomes[mat[i]];
-//             disciplina.periodo = mat[i] + 10;
-//             disciplina.carga_horaria = mat[i] + 100;
+        char **nomes = (char **) malloc(sizeof(char *) * quant);
+        for(int i = 0; i < quant; i++)
+        {
+            nomes[i] = (char *) malloc(sizeof(char) * 100);
+            scanf("%s", nomes[i]);
+            while(getchar() != '\n');
+        }
+        Disciplina disciplinas[10];
 
-//             disciplinas[i] = disciplina;
-//             arvorebb_disciplina_add(&raiz, disciplina);
-//         }
+        for(int i = 0; i < quant; i++)
+        {
+            disciplina.codigo_disciplina = mat[i];
+            disciplina.nome_disciplina = nomes[mat[i]];
+            disciplina.periodo = mat[i] + 10;
+            disciplina.carga_horaria = mat[i] + 100;
 
-//         if(cont == 0)
-//         {
-//             printf("Árvore original\n");
-//             arvorebb_disciplina_exibir(raiz);
-//             printf("\n");
-//         }
+            disciplinas[i] = disciplina;
+            arvorebb_disciplina_add(&raiz, disciplina);
+        }
 
-//         int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
-//         if(removeu)
-//             printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
-//         else
-//             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-//         arvorebb_disciplina_exibir(raiz); 
+        if(cont == 0)
+        {
+            printf("Árvore original\n");
+            arvorebb_disciplina_exibir(raiz);
+            printf("\n");
+        }
 
-//         arvorebb_disciplina_desaloca(&raiz);
-//         printf("\n\n");
-//     }
-//     return 0;
-// }
+        int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
+        if(removeu)
+            printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
+        else
+            printf("\nÁrvore após remover [Elemento não encontrado]\n");
+        arvorebb_disciplina_exibir(raiz); 
+
+        arvorebb_disciplina_desaloca(&raiz);
+        printf("\n\n");
+    }
+    return 0;
+}
