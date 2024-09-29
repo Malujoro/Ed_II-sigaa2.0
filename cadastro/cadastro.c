@@ -169,15 +169,3 @@ void cadastrar_notas(Lista *lista)
     else
         printf("\nAluno não encontrado");
 }
-
-
-// /// Remover
-
-// xiii)Remover uma disciplina de um determinado curso desde que não tenha nenhum aluno matriculado na mesma.
-
-// xiv)Permita remover uma disciplina da árvore de matrícula de um determinado aluno.
-
-
-// /// Histórico
-
-// xv) Mostrar o histórico de um determinado aluno, contendo o nome do curso, as disciplinas e sua respectiva nota organizadas pelo período que a disciplina está cadastrada no curso.

@@ -63,4 +63,6 @@ void arvorebb_nota_exibir(ArvoreBB_Nota *raiz);
 */
 int arvorebb_nota_remover(ArvoreBB_Nota **raiz, int codigo_disciplina);
 
+int arvorebb_nota_total_nos(ArvoreBB_Nota *raiz);
+
 #endif

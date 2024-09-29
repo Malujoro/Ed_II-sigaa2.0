@@ -168,6 +168,18 @@ int arvorebb_nota_remover(ArvoreBB_Nota **raiz, int codigo_disciplina)
     return removeu;
 }
 
+int arvorebb_nota_total_nos(ArvoreBB_Nota *raiz)
+{
+    int quant = 0;
+    if(raiz != NULL)
+    {
+        quant += 1;
+        quant += arvorebb_nota_total_nos(raiz->esquerdo);
+        quant += arvorebb_nota_total_nos(raiz->direito);
+    }
+    return quant;
+}
+
 // int main()
 // {
 //     for(int cont = 0; cont < 10; cont ++)
