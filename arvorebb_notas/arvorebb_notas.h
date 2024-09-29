@@ -46,6 +46,10 @@ void arvorebb_nota_desaloca(ArvoreBB_Nota **raiz);
 */
 int arvorebb_nota_add(ArvoreBB_Nota **raiz, Nota nota);
 
+ArvoreBB_Nota *arvorebb_nota_buscar(ArvoreBB_Nota *raiz, int codigo);
+
+void nota_exibir(Nota nota);
+
 /*
     Função para exibir a árvore de notas no formato "em ordem"
     Tem como parâmetro a referência da raiz da árvore

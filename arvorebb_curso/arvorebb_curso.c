@@ -94,9 +94,7 @@ void arvorebb_curso_exibir(ArvoreBB_Curso *raiz)
     if(raiz != NULL)
     {
         arvorebb_curso_exibir(raiz->esquerdo);
-        printf("%d -> ", raiz->info.cod);
-        printf("%s -> ", raiz->info.nome);
-        printf("%d -> \n", raiz->info.qt_periodos);
+        printf("Código: %d | Nome: %s | Períodos: %d\n", raiz->info.cod, raiz->info.nome, raiz->info.qt_periodos);
         arvorebb_curso_exibir(raiz->direito);
     }
 }

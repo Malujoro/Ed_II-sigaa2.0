@@ -47,6 +47,8 @@ void arvorebb_disciplina_desaloca(ArvoreBB_Disciplina **raiz);
 */
 int arvorebb_disciplina_add(ArvoreBB_Disciplina **raiz, Disciplina disciplina);
 
+void disciplina_exibir(Disciplina disciplina);
+
 /*
     Função para exibir a árvore de disciplinas no formato "em ordem"
     Tem como parâmetro a referência da raiz da árvore

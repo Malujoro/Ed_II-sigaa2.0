@@ -46,6 +46,8 @@ void lista_desaloca(Lista **lista);
 // Tem como parâmetro a referência do primeiro elemento da lista e a struct do aluno a ser adicionada
 void lista_add_ordenado(Lista **lista, Aluno aluno);
 
+void aluno_exibir(Aluno aluno);
+
 // Função para exibir a lista de alunos no formato "em ordem"
 // Tem como parâmetro a referência do primeiro elemento da lista
 void lista_exibir(Lista *lista);

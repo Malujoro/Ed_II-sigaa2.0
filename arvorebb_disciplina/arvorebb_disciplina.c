@@ -87,15 +87,18 @@ ArvoreBB_Disciplina *arvorebb_disciplina_buscar(ArvoreBB_Disciplina *raiz, int c
     return retorno;
 }
 
+void disciplina_exibir(Disciplina disciplina)
+{
+    printf("Código: %d | Nome: %s | Período: %d | Carga horária: %d\n", disciplina.codigo_disciplina,
+    disciplina.nome_disciplina, disciplina.periodo, disciplina.carga_horaria);
+}
+
 void arvorebb_disciplina_exibir(ArvoreBB_Disciplina *raiz)
 {
     if (raiz != NULL)
     {
         arvorebb_disciplina_exibir(raiz->esquerdo);
-        printf("Código: %d \n", raiz->info.codigo_disciplina);
-        printf("Nome da disciplina: %s\n", raiz->info.nome_disciplina);
-        printf("Período: %d\n", raiz->info.periodo);
-        printf("Carga horária: %d\n\n", raiz->info.carga_horaria);
+        disciplina_exibir(raiz->info);
         arvorebb_disciplina_exibir(raiz->direito);
     }
 }

@@ -70,7 +70,7 @@ void arvorebb_matricula_exibir(ArvoreBB_Matricula *raiz)
 {
     if (raiz != NULL)
     {
-        printf("%d -> ", raiz->info);
+        printf("%d | ", raiz->info);
         arvorebb_matricula_exibir(raiz->esquerdo);
         arvorebb_matricula_exibir(raiz->direito);
     }

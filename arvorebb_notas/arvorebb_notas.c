@@ -65,14 +65,36 @@ int arvorebb_nota_add(ArvoreBB_Nota **raiz, Nota nota)
     return inseriu;
 }
 
+ArvoreBB_Nota *arvorebb_nota_buscar(ArvoreBB_Nota *raiz, int codigo)
+{
+    ArvoreBB_Nota *retorno;
+
+    if(raiz != NULL)
+    {
+        if(codigo == raiz->info.codigo_disciplina)
+            retorno = raiz;
+        else if(codigo < raiz->info.codigo_disciplina)
+            retorno = arvorebb_nota_buscar(raiz->esquerdo, codigo);
+        else if(codigo > raiz->info.codigo_disciplina)
+            retorno = arvorebb_nota_buscar(raiz->direito, codigo);
+    }
+    else
+        retorno = NULL;
+    
+    return retorno;
+}
+
+void nota_exibir(Nota nota)
+{
+    printf("Código: %d | Semestre: %d | Nota final: %.1f\n", nota.codigo_disciplina, nota.semestre, nota.nota_final);
+}
+
 void arvorebb_nota_exibir(ArvoreBB_Nota *raiz)
 {
     if (raiz != NULL)
     {
         arvorebb_nota_exibir(raiz->esquerdo);
-        printf("Código: %d \n", raiz->info.codigo_disciplina);
-        printf("Semestre: %d\n", raiz->info.semestre);
-        printf("Nota final: %.1f\n", raiz->info.nota_final);
+        nota_exibir(raiz->info);
         arvorebb_nota_exibir(raiz->direito);
     }
 }
@@ -181,7 +203,7 @@ int arvorebb_nota_remover(ArvoreBB_Nota **raiz, int codigo_disciplina)
 //             printf("\nÁrvore após remover %d\n", notas[cont].codigo_disciplina);
 //         else
 //             printf("\nÁrvore após remover [Elemento não encontrado]\n");
-//         arvorebb_nota_exibir(raiz); 
+//         arvorebb_nota_exibir(raiz);
 
 //         arvorebb_nota_desaloca(&raiz);
 //         printf("\n\n");

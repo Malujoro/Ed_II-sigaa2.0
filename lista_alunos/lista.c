@@ -82,6 +82,11 @@ void lista_add_ordenado(Lista **lista, Aluno aluno)
     }
 }
 
+void aluno_exibir(Aluno aluno)
+{
+    printf("Matrícula: %d | Nome: %s | Código do curso: %d\n", aluno.matricula, aluno.nome, aluno.codigo_curso);
+}
+
 void lista_exibir(Lista *lista)
 {
     printf("Lista\n");
@@ -90,7 +95,7 @@ void lista_exibir(Lista *lista)
     no = lista;
     while(no != NULL)
     {
-        printf("Matrícula: %d | Nome: %s | Código do curso: %d\n", no->info.matricula, no->info.nome, no->info.codigo_curso);
+        aluno_exibir(no->info);
         no = no->proximo;
     }
 }

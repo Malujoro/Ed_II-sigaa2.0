@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cadastro.h"
-#include "lista_alunos/lista.h"
-#include "arvorebb_matricula/arvorebb_matricula.h"
-#include "arvorebb_disciplina/arvorebb_disciplina.h"
-#include "arvorebb_curso/arvorebb_curso.h"
-#include "arvorebb_notas/arvorebb_notas.h"
+#include "../lista_alunos/lista.h"
+#include "../arvorebb_matricula/arvorebb_matricula.h"
+#include "../arvorebb_disciplina/arvorebb_disciplina.h"
+#include "../arvorebb_curso/arvorebb_curso.h"
+#include "../arvorebb_notas/arvorebb_notas.h"
 
 void cadastrar_aluno(Lista **lista, ArvoreBB_Curso *raiz)
 {
