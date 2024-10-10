@@ -94,8 +94,8 @@ void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
         Disciplina disciplinas[curso->info.qt_periodos][quant_notas];
         int posicoes[curso->info.qt_periodos][quant_notas];
 
-        int tamanhos[quant_notas];
-        for(int i = 0; i < quant_notas; i++)
+        int tamanhos[curso->info.qt_periodos];
+        for(int i = 0; i < curso->info.qt_periodos; i++)
             tamanhos[i] = 0;
 
         for(int i = 0; i < quant_notas; i++)
@@ -109,17 +109,17 @@ void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
             tamanhos[indice]++;
         }
 
-        for(int i = 0; i < quant_notas; i++)
+        for(int i = 0; i < curso->info.qt_periodos; i++)
         {
             printf("\n%dº período: ", i+1);
-            for(int j = 0; j < tamanhos[i]; i++)
+            for(int j = 0; j < tamanhos[i]; j++)
             {
                 printf("Disciplina: %s | Nota: %.1f", disciplinas[i][j].nome_disciplina, notas[posicoes[i][j]].nota_final);
             }
         }
     }
     else
-        printf("Não há matrículas cadastradas");
+        printf("\nNão há matrículas cadastradas\n");
 }
 
 // 1) Aluno pode se "rematricular" na materia?
