@@ -15,6 +15,11 @@
                 "${fileDirname}/arvorebb_disciplina/arvorebb_disciplina.c",
                 "${fileDirname}/arvorebb_curso/arvorebb_curso.c",
                 "${fileDirname}/arvorebb_notas/arvorebb_notas.c",
+                "${fileDirname}/extras/extras.c",
+                "${fileDirname}/cadastro/cadastro.c",
+                "${fileDirname}/exibir/exibir.c",
+                "${fileDirname}/remover/remover.c",
+                "${fileDirname}/menu/menu.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"

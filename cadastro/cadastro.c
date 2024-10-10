@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cadastro.h"
+#include "../extras/extras.h"
 #include "../lista_alunos/lista.h"
 #include "../arvorebb_matricula/arvorebb_matricula.h"
 #include "../arvorebb_disciplina/arvorebb_disciplina.h"
@@ -26,7 +27,7 @@ void cadastrar_aluno(Lista **lista, ArvoreBB_Curso *raiz)
         lista_add_ordenado(lista, aluno);
     }
     else
-        printf("\nCurso não existe");
+        printf("\nCurso não existe\n");
 }
 
 void cadastrar_curso(ArvoreBB_Curso **raiz)
@@ -42,16 +43,16 @@ void cadastrar_curso(ArvoreBB_Curso **raiz)
     {
         leia_int("Quantidade de períodos: ", &curso.qt_periodos);
         if(curso.qt_periodos < 0)
-            printf("\nErro! Digite uma quantidade válida de períodos");
+            printf("\nErro! Digite uma quantidade válida de períodos\n");
     }
 
     curso.arvbb_disciplina = arvorebb_disciplina_cria();
 
     if(arvorebb_curso_add(raiz, curso))
-        printf("\nCurso cadastrado com sucesso");
+        printf("\nCurso cadastrado com sucesso\n");
     else
     {
-        printf("\nNão foi possível adicionar curso! Código já utilizado");
+        printf("\nNão foi possível adicionar curso! Código já utilizado\n");
         free(curso.nome);
         curso.nome = NULL;
     }
@@ -78,7 +79,7 @@ void cadastrar_disciplina(ArvoreBB_Curso *raiz)
         {
             leia_int("\nPeríodo da disciplina: ", &disciplina.periodo);
             if(disciplina.periodo <= 0 || disciplina.periodo > curso->info.qt_periodos)
-                printf("\nErro! Digite um período entre 1 e %d", curso->info.qt_periodos);
+                printf("\nErro! Digite um período entre 1 e %d\n", curso->info.qt_periodos);
         }
 
         disciplina.carga_horaria = 0;
@@ -86,27 +87,27 @@ void cadastrar_disciplina(ArvoreBB_Curso *raiz)
         {
             leia_int("Carga horária: ", &disciplina.carga_horaria);
             if(disciplina.carga_horaria < 30 || disciplina.carga_horaria > 90 || disciplina.carga_horaria % 15 != 0)
-                printf("\nErro! Digite uma carga horária entre 30 e 90 que seja divisível por 15");
+                printf("\nErro! Digite uma carga horária entre 30 e 90 que seja divisível por 15\n");
         }
 
         if(arvorebb_disciplina_add(&(curso->info.arvbb_disciplina), disciplina))
-            printf("\nDisciplina cadastrada com sucesso");
+            printf("\nDisciplina cadastrada com sucesso\n");
         else
         {
-            printf("\nNão foi possível adicionar disciplina! Código já utilizado");
+            printf("\nNão foi possível adicionar disciplina! Código já utilizado\n");
             free(disciplina.nome_disciplina);
             disciplina.nome_disciplina = NULL;
         }
     }
     else
-        printf("\nCurso não cadastrado");
+        printf("\nCurso não cadastrado\n");
 }
 
 void cadastrar_matricula(Lista *lista, ArvoreBB_Curso *raiz)
 {
     int matricula_aluno;
 
-    leia_int("Matricula do aluno: ", &matricula_aluno);
+    leia_int("\nMatricula do aluno: ", &matricula_aluno);
 
     Lista *aluno = lista_alunos_buscar(lista, matricula_aluno);
     
@@ -122,16 +123,16 @@ void cadastrar_matricula(Lista *lista, ArvoreBB_Curso *raiz)
 
         if (disciplina != NULL)
         {
-            if(arvorebb_matricula_add(aluno->info.arvbb_matricula, codigo_disciplina))
-                printf("\nMatrícula efetuada com sucesso na disciplina %s", disciplina->info.nome_disciplina);
+            if(arvorebb_matricula_add(&(aluno->info.arvbb_matricula), codigo_disciplina))
+                printf("\nMatrícula efetuada com sucesso na disciplina %s\n", disciplina->info.nome_disciplina);
             else
-                printf("\nMatrícula já foi realizada anteriormente");
+                printf("\nMatrícula já foi realizada anteriormente\n");
         }
         else
-            printf("\nDisciplina inválida");
+            printf("\nDisciplina inválida\n");
     }
     else
-        printf("\nAluno não encontrado");
+        printf("\nAluno não encontrado\n");
 
 }
 
@@ -151,21 +152,21 @@ void cadastrar_notas(Lista *lista)
         if(arvorebb_matricula_remover(&(aluno->info.arvbb_matricula), nota.codigo_disciplina))
         {
             leia_int("Semestre: ", &nota.semestre);
-            nota.semestre = -1;
-            while(nota.semestre < 0 || nota.semestre > 10)
+            nota.nota_final = -1;
+            while(nota.nota_final < 0 || nota.nota_final > 10)
             {
-                leia_float("Nota final: ", &nota.semestre);
-                if(nota.semestre < 0 || nota.semestre > 10)
-                    printf("\nErro! Digite uma nota válida");
+                leia_float("Nota final: ", &nota.nota_final);
+                if(nota.nota_final < 0 || nota.nota_final > 10)
+                    printf("\nErro! Digite uma nota válida\n");
             }
-            if(arvorebb_nota_add(&(aluno->info.arvbb_matricula), nota))
-                printf("\nNota cadastrada com sucesso");
+            if(arvorebb_nota_add(&(aluno->info.arvbb_nota), nota))
+                printf("\nNota cadastrada com sucesso\n");
             else
-                printf("\nNão foi possível cadastrar nota");
+                printf("\nNão foi possível cadastrar nota\n");
         }
         else
-            printf("\nCódigo inválido");
+            printf("\nCódigo inválido\n");
     }
     else
-        printf("\nAluno não encontrado");
+        printf("\nAluno não encontrado\n");
 }

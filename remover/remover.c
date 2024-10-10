@@ -15,14 +15,14 @@ int remover_disciplina_sem_alunos(ArvoreBB_Disciplina **raiz, int codigo_discipl
 
     while(aux != NULL && naoTemAluno)
     {
-        if(!arvorebb_matricula_buscar(aux->info.arvbb_matricula, codigo_disciplina))
+        if(arvorebb_matricula_buscar(aux->info.arvbb_matricula, codigo_disciplina))
             naoTemAluno = 0;
         
         aux = aux->proximo;
     }
     
     if(naoTemAluno)
-        removeu = arvorebb_matricula_remover(raiz, codigo_disciplina);
+        removeu = arvorebb_disciplina_remover(raiz, codigo_disciplina);
 
     return removeu; 
 }

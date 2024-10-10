@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "extras.h"
 
@@ -21,21 +22,21 @@ void limpa_buffer()
 
 void leia_int(char *texto, int *variavel)
 {
-    printf(texto);
+    printf("%s", texto);
     scanf("%d", variavel);
     limpa_buffer();
 }
 
 void leia_str(char *texto, char *variavel)
 {
-    printf(texto);
+    printf("%s", texto);
     scanf("%s", variavel);
     limpa_buffer();
 }
 
 void leia_float(char *texto, float *variavel)
 {
-    printf(texto);
+    printf("%s", texto);
     scanf("%f", variavel);
     limpa_buffer();
 }

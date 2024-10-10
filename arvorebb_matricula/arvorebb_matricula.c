@@ -66,6 +66,25 @@ int arvorebb_matricula_add(ArvoreBB_Matricula **raiz, int codigo_matricula)
     return inseriu;
 }
 
+ArvoreBB_Matricula *arvorebb_matricula_buscar(ArvoreBB_Matricula *raiz, int matricula)
+{
+    ArvoreBB_Matricula *retorno;
+
+    if(raiz != NULL)
+    {
+        if(matricula == raiz->info)
+            retorno = raiz;
+        else if(matricula < raiz->info)
+            retorno = arvorebb_matricula_buscar(raiz->esquerdo, matricula);
+        else if(matricula > raiz->info)
+            retorno = arvorebb_matricula_buscar(raiz->direito, matricula);
+    }
+    else
+        retorno = NULL;
+    
+    return retorno;
+}
+
 void arvorebb_matricula_exibir(ArvoreBB_Matricula *raiz)
 {
     if (raiz != NULL)

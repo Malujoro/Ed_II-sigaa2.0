@@ -172,53 +172,53 @@ int arvorebb_disciplina_remover(ArvoreBB_Disciplina **raiz, int codigo_disciplin
     return removeu;
 }
 
-int main()
-{
-    for(int cont = 0; cont < 10; cont ++)
-    {
+// int main()
+// {
+//     for(int cont = 0; cont < 10; cont ++)
+//     {
 
-        ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
-        Disciplina disciplina;
+//         ArvoreBB_Disciplina *raiz = arvorebb_disciplina_cria();
+//         Disciplina disciplina;
 
-        int quant = 10;
-        int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
+//         int quant = 10;
+//         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
 
-        char **nomes = (char **) malloc(sizeof(char *) * quant);
-        for(int i = 0; i < quant; i++)
-        {
-            nomes[i] = (char *) malloc(sizeof(char) * 100);
-            scanf("%s", nomes[i]);
-            while(getchar() != '\n');
-        }
-        Disciplina disciplinas[10];
+//         char **nomes = (char **) malloc(sizeof(char *) * quant);
+//         for(int i = 0; i < quant; i++)
+//         {
+//             nomes[i] = (char *) malloc(sizeof(char) * 100);
+//             scanf("%s", nomes[i]);
+//             while(getchar() != '\n');
+//         }
+//         Disciplina disciplinas[10];
 
-        for(int i = 0; i < quant; i++)
-        {
-            disciplina.codigo_disciplina = mat[i];
-            disciplina.nome_disciplina = nomes[mat[i]];
-            disciplina.periodo = mat[i] + 10;
-            disciplina.carga_horaria = mat[i] + 100;
+//         for(int i = 0; i < quant; i++)
+//         {
+//             disciplina.codigo_disciplina = mat[i];
+//             disciplina.nome_disciplina = nomes[mat[i]];
+//             disciplina.periodo = mat[i] + 10;
+//             disciplina.carga_horaria = mat[i] + 100;
 
-            disciplinas[i] = disciplina;
-            arvorebb_disciplina_add(&raiz, disciplina);
-        }
+//             disciplinas[i] = disciplina;
+//             arvorebb_disciplina_add(&raiz, disciplina);
+//         }
 
-        if(cont == 0)
-        {
-            printf("Árvore original\n");
-            arvorebb_disciplina_exibir(raiz);
-            printf("\n");
-        }
+//         if(cont == 0)
+//         {
+//             printf("Árvore original\n");
+//             arvorebb_disciplina_exibir(raiz);
+//             printf("\n");
+//         }
 
-        int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
-        if(removeu)
-            printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
-        else
-            printf("\nÁrvore após remover [Elemento não encontrado]\n");
-        arvorebb_disciplina_exibir(raiz); 
+//         int removeu = arvorebb_disciplina_remover(&raiz, disciplinas[cont].codigo_disciplina);
+//         if(removeu)
+//             printf("\nÁrvore após remover %d\n", disciplinas[cont].codigo_disciplina);
+//         else
+//             printf("\nÁrvore após remover [Elemento não encontrado]\n");
+//         arvorebb_disciplina_exibir(raiz); 
 
-        arvorebb_disciplina_desaloca(&raiz);
-        printf("\n\n");
-    }
-    return 0;
-}
+//         arvorebb_disciplina_desaloca(&raiz);
+//         printf("\n\n");
+//     }
+//     return 0;
+// }

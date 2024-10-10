@@ -47,14 +47,17 @@ Lista *lista_cria()
 
 void lista_desaloca(Lista **lista)
 {
-    if((*lista)->proximo != NULL)
-        lista_desaloca(&(*lista)->proximo);
+    if(*lista != NULL)
+    {
+        if((*lista)->proximo != NULL)
+            lista_desaloca(&(*lista)->proximo);
 
-    free((*lista)->info.nome);
-    (*lista)->info.nome = NULL;
-    
-    free(*lista);
-    *lista = NULL;
+        free((*lista)->info.nome);
+        (*lista)->info.nome = NULL;
+
+        free(*lista);
+        *lista = NULL;
+    }
 }
 
 void lista_add_ordenado(Lista **lista, Aluno aluno)

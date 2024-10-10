@@ -39,6 +39,8 @@ void arvorebb_matricula_desaloca(ArvoreBB_Matricula **raiz);
 */
 int arvorebb_matricula_add(ArvoreBB_Matricula **raiz, int codigo_disciplina);
 
+ArvoreBB_Matricula *arvorebb_matricula_buscar(ArvoreBB_Matricula *raiz, int matricula);
+
 /*
     Função para exibir a árvore de disciplinas no formato "em ordem"
     Tem como parâmetro a referência da raiz da árvore

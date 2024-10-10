@@ -26,7 +26,7 @@ void exibir_todos_cursos(ArvoreBB_Curso *raiz)
 
 void exibir_disciplinas_do_curso(ArvoreBB_Curso *raiz)
 {
-    arvorebb_curso_exibir(raiz);
+    arvorebb_disciplina_exibir(raiz->info.arvbb_disciplina);
 }
 
 void exibir_disciplinas_do_periodo_curso(ArvoreBB_Disciplina *raiz, int periodo)
@@ -51,7 +51,7 @@ void exibir_disciplinas_do_periodo_aluno(ArvoreBB_Nota *raiz, int periodo)
     {
         exibir_disciplinas_do_periodo_aluno(raiz->esquerdo, periodo);
         if(raiz->info.semestre == periodo)
-            printf("Nota: %d", raiz->info.nota_final);
+            printf("Nota: %f", raiz->info.nota_final);
         exibir_disciplinas_do_periodo_aluno(raiz->direito, periodo);
     }
 }
@@ -71,17 +71,17 @@ static void arvorebb_nota_preenche_vetor(ArvoreBB_Nota *raiz, Nota *vetor, int *
     {
         vetor[*tam] = raiz->info;
         (*tam)++;
-        arvorebb_nota_preenche_matriz(raiz->esquerdo, vetor, tam);
-        arvorebb_nota_preenche_matriz(raiz->direito, vetor, tam);
+        arvorebb_nota_preenche_vetor(raiz->esquerdo, vetor, tam);
+        arvorebb_nota_preenche_vetor(raiz->direito, vetor, tam);
     }
 }
 
 void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
 {
-    Curso *curso;
+    ArvoreBB_Curso *curso;
     curso = arvorebb_curso_buscar(raiz, aluno.codigo_curso);
 
-    printf("\nNome do curso: %s", curso->nome);
+    printf("\nNome do curso: %s", curso->info.nome);
 
     int quant_notas = arvorebb_nota_total_nos(aluno.arvbb_nota);
     if(quant_notas > 0)
@@ -91,8 +91,8 @@ void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
 
         arvorebb_nota_preenche_vetor(aluno.arvbb_nota, notas, &tam);
 
-        Disciplina disciplinas[curso->qt_periodos][quant_notas];
-        int posicoes[curso->qt_periodos][quant_notas];
+        Disciplina disciplinas[curso->info.qt_periodos][quant_notas];
+        int posicoes[curso->info.qt_periodos][quant_notas];
 
         int tamanhos[quant_notas];
         for(int i = 0; i < quant_notas; i++)
@@ -101,7 +101,7 @@ void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
         for(int i = 0; i < quant_notas; i++)
         {
             ArvoreBB_Disciplina *disciplina; 
-            disciplina = arvorebb_disciplina_buscar(curso->arvbb_disciplina, notas[i].codigo_disciplina);
+            disciplina = arvorebb_disciplina_buscar(curso->info.arvbb_disciplina, notas[i].codigo_disciplina);
 
             int indice = disciplina->info.periodo - 1;
             disciplinas[indice][tamanhos[indice]] = disciplina->info;
