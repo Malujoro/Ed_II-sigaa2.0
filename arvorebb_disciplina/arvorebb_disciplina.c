@@ -58,9 +58,9 @@ int arvorebb_disciplina_add(ArvoreBB_Disciplina **raiz, Disciplina disciplina)
     else
     {
         if (disciplina.codigo_disciplina < (*raiz)->info.codigo_disciplina)
-            arvorebb_disciplina_add(&(*raiz)->esquerdo, disciplina);
+            inseriu = arvorebb_disciplina_add(&(*raiz)->esquerdo, disciplina);
         else if (disciplina.codigo_disciplina > (*raiz)->info.codigo_disciplina)
-            arvorebb_disciplina_add(&(*raiz)->direito, disciplina);
+            inseriu = arvorebb_disciplina_add(&(*raiz)->direito, disciplina);
         else
             inseriu = 0;
     }

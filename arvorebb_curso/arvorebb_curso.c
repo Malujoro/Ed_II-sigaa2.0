@@ -60,9 +60,9 @@ int arvorebb_curso_add(ArvoreBB_Curso **raiz, Curso info)
     else
     {
         if (info.cod < (*raiz)->info.cod)
-            arvorebb_curso_add(&(*raiz)->esquerdo, info);
+            inseriu = arvorebb_curso_add(&(*raiz)->esquerdo, info);
         else if (info.cod > (*raiz)->info.cod)
-            arvorebb_curso_add(&(*raiz)->direito, info);
+            inseriu = arvorebb_curso_add(&(*raiz)->direito, info);
         else
             inseriu = 0;
     }

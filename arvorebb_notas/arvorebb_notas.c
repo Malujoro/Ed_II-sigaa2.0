@@ -55,9 +55,9 @@ int arvorebb_nota_add(ArvoreBB_Nota **raiz, Nota nota)
     else
     {
         if (nota.codigo_disciplina < (*raiz)->info.codigo_disciplina)
-            arvorebb_nota_add(&(*raiz)->esquerdo, nota);
+            inseriu = arvorebb_nota_add(&(*raiz)->esquerdo, nota);
         else if (nota.codigo_disciplina > (*raiz)->info.codigo_disciplina)
-            arvorebb_nota_add(&(*raiz)->direito, nota);
+            inseriu = arvorebb_nota_add(&(*raiz)->direito, nota);
         else
             inseriu = 0;
     }

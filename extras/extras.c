@@ -30,7 +30,7 @@ void leia_int(char *texto, int *variavel)
 void leia_str(char *texto, char *variavel)
 {
     printf("%s", texto);
-    scanf("%s", variavel);
+    scanf("%[^\n]s", variavel);
     limpa_buffer();
 }
 
