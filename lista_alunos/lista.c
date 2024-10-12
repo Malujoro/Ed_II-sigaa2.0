@@ -55,6 +55,9 @@ void lista_desaloca(Lista **lista)
         free((*lista)->info.nome);
         (*lista)->info.nome = NULL;
 
+        arvorebb_desaloca(&((*lista)->info.arvbb_matricula));
+        arvorebb_desaloca(&((*lista)->info.arvbb_nota));
+
         free(*lista);
         *lista = NULL;
     }
@@ -113,8 +116,6 @@ Lista *lista_alunos_buscar(Lista *lista, int matricula)
     return aluno;
 }
 
-// TODO adicionar a verificação na de curso existente hora de cadastrar o aluno
-
 // int main()
 // {
 //     Lista *lista = lista_cria();
@@ -149,6 +150,8 @@ Lista *lista_alunos_buscar(Lista *lista, int matricula)
 //         aluno1.codigo_curso = 100 + i;
 //         aluno1.matricula = 999 - i;
 //         aluno1.nome = palavras[i % 102];
+//         aluno1.arvbb_matricula = arvorebb_cria();
+//         aluno1.arvbb_nota = arvorebb_cria();
 //         lista_add_ordenado(&lista, aluno1);
 //     }
 

@@ -76,6 +76,7 @@ static void arvorebb_nota_preenche_vetor(ArvoreBB_Nota *raiz, Nota *vetor, int *
     }
 }
 
+// TODO Buscar maneira mais eficiente de se fazer
 void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
 {
     ArvoreBB_Curso *curso;
@@ -121,6 +122,3 @@ void exibir_historico(Aluno aluno, ArvoreBB_Curso *raiz)
     else
         printf("\nNão há matrículas cadastradas\n");
 }
-
-// 1) Aluno pode se "rematricular" na materia?
-// 2) Já existe uma função de exibir pra árvore, então seria correto criar uma função que "apenas" a utiliza? (por questões de estética e modularização)

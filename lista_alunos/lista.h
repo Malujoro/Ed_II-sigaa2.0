@@ -1,16 +1,15 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include "../arvorebb_notas/arvorebb_notas.h"
-#include "../arvorebb_matricula/arvorebb_matricula.h"
+#include "../arvorebb/arvorebb.h"
 
 typedef struct aluno
 {
     int matricula;
     char *nome;
     int codigo_curso;
-    ArvoreBB_Nota *arvbb_nota;
-    ArvoreBB_Matricula *arvbb_matricula;
+    ArvoreBB *arvbb_nota;
+    ArvoreBB *arvbb_matricula;
 } Aluno;
 
 typedef struct lista
