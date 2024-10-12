@@ -4,7 +4,8 @@
 
 char *alocar_str(int tam)
 {
-    char *vetor = (char *) malloc(sizeof(char) * tam);
+    char *vetor;
+    vetor = (char *) malloc(sizeof(char) * tam);
 
     if(!vetor)
     {
