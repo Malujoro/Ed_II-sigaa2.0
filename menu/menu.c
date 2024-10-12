@@ -4,17 +4,15 @@
 #include "../cadastro/cadastro.h"
 #include "../exibir/exibir.h"
 #include "../remover/remover.h"
-
 #include "../lista_alunos/lista.h"
-#include "../arvorebb_matricula/arvorebb_matricula.h"
-#include "../arvorebb_disciplina/arvorebb_disciplina.h"
-#include "../arvorebb_curso/arvorebb_curso.h"
-#include "../arvorebb_notas/arvorebb_notas.h"
+#include "../arvorebb/arvorebb.h"
+
 
 void exibir_opcoes()
 {
-    // opções de Cadastro
-    printf("[01] - Cadastrar aluno");
+    // Opções de Cadastro
+    printf("----------[Menu]----------");
+    printf("\n[01] - Cadastrar aluno");
     printf("\n[02] - Cadastrar curso");
     printf("\n[03] - Cadastrar disciplina");
     printf("\n[04] - Cadastrar matrícula");
@@ -42,22 +40,23 @@ void iniciar_programa()
     Lista *lista_alunos;
     lista_alunos = lista_cria();
 
-    ArvoreBB_Curso *arvorebb_curso_raiz;
-    arvorebb_curso_raiz = arvorebb_curso_cria();
+    ArvoreBB *arvorebb_curso_raiz;
+    arvorebb_curso_raiz = arvorebb_cria();
 
     Lista *aluno_buscado;
     aluno_buscado = NULL;
 
-    ArvoreBB_Curso *curso_buscado;
+    ArvoreBB *curso_buscado;
     curso_buscado = NULL;
 
-    ArvoreBB_Nota *nota_buscada;
+    ArvoreBB *nota_buscada;
     nota_buscada = NULL;
     
     do
     {
         exibir_opcoes();
         leia_int("\nOpção: ", &op);
+        printf("\n");
 
         switch(op)
         {
@@ -92,7 +91,7 @@ void iniciar_programa()
 
             case 8:
                 leia_int("\nCódigo do curso: ", &codigo);
-                curso_buscado = arvorebb_curso_buscar(arvorebb_curso_raiz, codigo);
+                curso_buscado = arvorebb_buscar(arvorebb_curso_raiz, codigo);
                 if(curso_buscado != NULL)
                     exibir_disciplinas_do_curso(curso_buscado);
                 else
@@ -101,12 +100,12 @@ void iniciar_programa()
 
             case 9:
                 leia_int("\nCódigo do curso: ", &codigo);
-                curso_buscado = arvorebb_curso_buscar(arvorebb_curso_raiz, codigo);
+                curso_buscado = arvorebb_buscar(arvorebb_curso_raiz, codigo);
                 if(curso_buscado != NULL)
                 {
                     leia_int("\nPeríodo: ", &periodo);
-                    if(periodo > 0 && periodo <= curso_buscado->info.qt_periodos)
-                        exibir_disciplinas_do_periodo_curso(curso_buscado->info.arvbb_disciplina, periodo);
+                    if(periodo > 0 && periodo <= curso_buscado->info.curso.qt_periodos)
+                        exibir_disciplinas_do_periodo_curso(curso_buscado->info.curso.arvbb_disciplina, periodo);
                     else
                         printf("\nPeríodo inválido\n");
                 }
@@ -141,9 +140,9 @@ void iniciar_programa()
                 if(aluno_buscado != NULL)
                 {
                     leia_int("\nMatrícula da Disciplina: ", &codigo);
-                    nota_buscada = arvorebb_nota_buscar(aluno_buscado->info.arvbb_nota, codigo);
+                    nota_buscada = arvorebb_buscar(aluno_buscado->info.arvbb_nota, codigo);
                     if(nota_buscada != NULL)
-                        exibir_nota_da_disciplina_aluno(nota_buscada->info);
+                        exibir_nota_da_disciplina_aluno(nota_buscada->info.nota);
                     else
                         printf("\nDisciplina com Nota não encontrada\n");
                 }
@@ -153,14 +152,14 @@ void iniciar_programa()
 
             case 13:
                 leia_int("\nCódigo do curso: ", &codigo);
-                curso_buscado = arvorebb_curso_buscar(arvorebb_curso_raiz, codigo);
+                curso_buscado = arvorebb_buscar(arvorebb_curso_raiz, codigo);
                 if(curso_buscado != NULL)
                 {
                     leia_int("\nCódigo da disciplina: ", &codigo);
-                    if(remover_disciplina_sem_alunos(&(curso_buscado->info.arvbb_disciplina), codigo, lista_alunos))
+                    if(remover_disciplina_sem_alunos(&(curso_buscado->info.curso.arvbb_disciplina), codigo, lista_alunos))
                         printf("\nDisciplina removida com sucesso\n");
                     else
-                        printf("\nDisciplina não encontrada\n");
+                        printf("\nNão foi possível remover a disciplina\n");
                 }
                 else
                     printf("\nCurso não encontrado\n");

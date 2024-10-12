@@ -9,7 +9,7 @@ void cadastrar_aluno(Lista **lista, ArvoreBB *raiz_curso)
 {
     Aluno aluno;
 
-    leia_int("\nCódigo do curso do aluno: ", &aluno.codigo_curso);
+    leia_int("Código do curso do aluno: ", &aluno.codigo_curso);
 
     ArvoreBB *curso;
     curso = arvorebb_buscar(raiz_curso, aluno.codigo_curso);
@@ -33,7 +33,7 @@ void cadastrar_curso(ArvoreBB **raiz_curso)
     Curso curso;
     curso.nome = alocar_str(50);
 
-    leia_int("\nCódigo do curso: ", &curso.cod);
+    leia_int("Código do curso: ", &curso.cod);
     leia_str("Nome do curso: ", curso.nome);
 
     curso.qt_periodos = 0;
@@ -63,7 +63,7 @@ void cadastrar_disciplina(ArvoreBB *raiz_curso)
 {
     int codigo_curso;
 
-    leia_int("\nCódigo do curso: ", &codigo_curso);
+    leia_int("Código do curso: ", &codigo_curso);
 
     ArvoreBB *curso;
     curso = arvorebb_buscar(raiz_curso, codigo_curso);
@@ -79,7 +79,7 @@ void cadastrar_disciplina(ArvoreBB *raiz_curso)
         disciplina.periodo = 0;
         while(disciplina.periodo <= 0 || disciplina.periodo > curso->info.curso.qt_periodos)
         {
-            leia_int("\nPeríodo da disciplina: ", &disciplina.periodo);
+            leia_int("Período da disciplina: ", &disciplina.periodo);
             if(disciplina.periodo <= 0 || disciplina.periodo > curso->info.curso.qt_periodos)
                 printf("\nErro! Digite um período entre 1 e %d\n", curso->info.curso.qt_periodos);
         }
@@ -111,7 +111,7 @@ void cadastrar_matricula(Lista *lista, ArvoreBB *raiz_curso)
 {
     int matricula_aluno;
 
-    leia_int("\nMatricula do aluno: ", &matricula_aluno);
+    leia_int("Matricula do aluno: ", &matricula_aluno);
 
     Lista *aluno;
     aluno = lista_alunos_buscar(lista, matricula_aluno);
@@ -125,7 +125,7 @@ void cadastrar_matricula(Lista *lista, ArvoreBB *raiz_curso)
         leia_int("Código da disciplina: ", &codigo_disciplina);
 
         ArvoreBB *disciplina;
-        disciplina = arvorebb_disciplina_buscar(curso->info.curso.arvbb_disciplina, codigo_disciplina);
+        disciplina = arvorebb_buscar(curso->info.curso.arvbb_disciplina, codigo_disciplina);
 
         if (disciplina != NULL)
         {
@@ -148,7 +148,7 @@ void cadastrar_notas(Lista *lista)
 {
     int matricula_aluno;
 
-    leia_int("\nMatricula do aluno: ", &matricula_aluno);
+    leia_int("Matricula do aluno: ", &matricula_aluno);
 
     Lista *aluno;
     aluno = lista_alunos_buscar(lista, matricula_aluno);

@@ -97,4 +97,6 @@ void arvorebb_nota_exibir(ArvoreBB *raiz);
 */
 int arvorebb_remover(ArvoreBB **raiz, int codigo);
 
+int arvorebb_total_nos(ArvoreBB *raiz);
+
 #endif
