@@ -4,7 +4,6 @@
 #include "../lista_alunos/lista.h"
 #include "../arvorebb/arvorebb.h"
 
-// TODO adicionar verificação de Nota também, para não excluir alunos que possuem nota
 int remover_disciplina_sem_alunos(ArvoreBB **raiz_disciplina, int codigo_disciplina, Lista *lista)
 {
     int removeu = 0;
@@ -13,7 +12,7 @@ int remover_disciplina_sem_alunos(ArvoreBB **raiz_disciplina, int codigo_discipl
 
     while(aux != NULL && naoTemAluno)
     {
-        if(arvorebb_buscar(aux->info.arvbb_matricula, codigo_disciplina))
+        if(arvorebb_buscar(aux->info.arvbb_matricula, codigo_disciplina) || arvorebb_buscar(aux->info.arvbb_nota, codigo_disciplina))
             naoTemAluno = 0;
         
         aux = aux->proximo;

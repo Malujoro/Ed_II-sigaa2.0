@@ -53,9 +53,19 @@ void exibir_disciplinas_do_periodo_aluno(ArvoreBB *raiz_nota, int periodo)
     }
 }
 
-void exibir_nota_da_disciplina_aluno(Nota nota)
+void exibir_nota_da_disciplina_aluno(Aluno aluno, int codigo, ArvoreBB *raiz_curso)
 {
-    nota_exibir(nota);
+    ArvoreBB *nota, *curso, *disciplina;
+    nota = arvorebb_buscar(aluno.arvbb_nota, codigo);
+    if(nota != NULL)
+    {
+        curso = arvorebb_buscar(raiz_curso, aluno.codigo_curso);
+        disciplina = arvorebb_buscar(curso->info.curso.arvbb_disciplina, codigo);
+        nota_exibir(nota->info.nota);
+        printf("Período do curso: %d | Carga horária: %d", disciplina->info.disciplina.periodo, disciplina->info.disciplina.carga_horaria);
+    }
+    else
+        printf("Disciplina com Nota não encontrada");
 }
 
 static void arvorebb_nota_preenche_vetor(ArvoreBB *raiz_nota, Nota *vetor, int *tam)
@@ -69,7 +79,6 @@ static void arvorebb_nota_preenche_vetor(ArvoreBB *raiz_nota, Nota *vetor, int *
     }
 }
 
-// TODO Buscar maneira mais eficiente de se fazer
 void exibir_historico(Aluno aluno, ArvoreBB *raiz_curso)
 {
     ArvoreBB *curso;

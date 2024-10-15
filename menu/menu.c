@@ -48,9 +48,6 @@ void iniciar_programa()
 
     ArvoreBB *curso_buscado;
     curso_buscado = NULL;
-
-    ArvoreBB *nota_buscada;
-    nota_buscada = NULL;
     
     do
     {
@@ -140,11 +137,7 @@ void iniciar_programa()
                 if(aluno_buscado != NULL)
                 {
                     leia_int("\nMatrícula da Disciplina: ", &codigo);
-                    nota_buscada = arvorebb_buscar(aluno_buscado->info.arvbb_nota, codigo);
-                    if(nota_buscada != NULL)
-                        exibir_nota_da_disciplina_aluno(nota_buscada->info.nota);
-                    else
-                        printf("\nDisciplina com Nota não encontrada\n");
+                    exibir_nota_da_disciplina_aluno(aluno_buscado->info, codigo, arvorebb_curso_raiz);
                 }
                 else
                     printf("\nAluno não encontrado\n");
