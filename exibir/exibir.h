@@ -16,7 +16,7 @@ void exibir_disciplinas_do_aluno(Aluno aluno);
 
 void exibir_disciplinas_do_periodo_aluno(ArvoreBB *raiz_nota, int periodo);
 
-void exibir_nota_da_disciplina_aluno(Nota nota);
+void exibir_nota_da_disciplina_aluno(Aluno aluno, int codigo, ArvoreBB *raiz_curso);
 
 void exibir_historico(Aluno aluno, ArvoreBB *raiz_curso);
 

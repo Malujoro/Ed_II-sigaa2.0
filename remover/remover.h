@@ -8,5 +8,4 @@ int remover_disciplina_sem_alunos(ArvoreBB **raiz_disciplina, int codigo_discipl
 
 int remover_matricula_aluno(Lista *aluno, int codigo_matricula);
 
-
 #endif
