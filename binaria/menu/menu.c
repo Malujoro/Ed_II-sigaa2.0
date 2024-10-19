@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "menu.h"
-#include "../extras/extras.h"
-#include "../cadastrobb/cadastrobb.h"
-#include "../exibirbb/exibirbb.h"
-#include "../removerbb/removerbb.h"
-#include "../lista_alunosbb/listabb.h"
-#include "../arvorebb/arvorebb.h"
+#include "../../extras/extras.h"
+#include "../cadastro/cadastro.h"
+#include "../exibir/exibir.h"
+#include "../remover/remover.h"
+#include "../lista_alunos/lista.h"
+#include "../arvore/arvore.h"
 
 
 void exibir_opcoes()

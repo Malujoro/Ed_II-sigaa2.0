@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "removerbb.h"
-#include "../lista_alunos/listabb.h"
-#include "../arvorebb/arvorebb.h"
+#include "remover.h"
+#include "../lista_alunos/lista.h"
+#include "../arvore/arvore.h"
 
 int remover_disciplina_sem_alunos(ArvoreBB **raiz_disciplina, int codigo_disciplina, Lista *lista)
 {

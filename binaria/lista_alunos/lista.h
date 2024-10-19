@@ -1,7 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include "../arvorebb/arvorebb.h"
+#include "../arvore/arvore.h"
 
 typedef struct aluno
 {

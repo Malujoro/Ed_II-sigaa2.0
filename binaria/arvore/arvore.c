@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "arvorebb.h"
+#include "arvore.h"
 
 ArvoreBB *no_aloca()
 {

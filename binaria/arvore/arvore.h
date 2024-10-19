@@ -84,10 +84,35 @@ ArvoreBB *arvorebb_buscar(ArvoreBB *raiz, int codigo);
     Tem como parâmetro o endereço da raiz da árvore
 */
 void arvorebb_exibir(ArvoreBB *raiz);
+
+/*
+    Função para exibir a árvore de cursos no formato "em ordem"
+    Tem como parâmetro o endereço da raiz da árvore
+*/
 void arvorebb_curso_exibir(ArvoreBB *raiz);
+
+/*
+    Função para exibir uma disciplina
+    Tem como parâmetro a própria disciplina
+*/
 void disciplina_exibir(Disciplina disciplina);
+
+/*
+    Função para exibir a árvore de disciplinas no formato "em ordem"
+    Tem como parâmetro o endereço da raiz da árvore
+*/
 void arvorebb_disciplina_exibir(ArvoreBB *raiz);
+
+/*
+    Função para exibir uma nota
+    Tem como parâmetro a própria nota
+*/
 void nota_exibir(Nota nota);
+
+/*
+    Função para exibir a árvore de notas no formato "em ordem"
+    Tem como parâmetro o endereço da raiz da árvore
+*/
 void arvorebb_nota_exibir(ArvoreBB *raiz);
 
 /*
@@ -97,6 +122,11 @@ void arvorebb_nota_exibir(ArvoreBB *raiz);
 */
 int arvorebb_remover(ArvoreBB **raiz, int codigo);
 
+/*
+    Função para contar quantos nós uma árvore possui
+    Tem como parâmetro o endereço da raiz da árvore
+    Retorna a quantidade de nós
+*/
 int arvorebb_total_nos(ArvoreBB *raiz);
 
 #endif

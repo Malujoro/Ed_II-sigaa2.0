@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "exibirbb.h"
-#include "../lista_alunos/listabb.h"
-#include "../arvorebb/arvorebb.h"
+#include "exibir.h"
+#include "../lista_alunos/lista.h"
+#include "../arvore/arvore.h"
 
 void exibir_alunos_do_curso(Lista *lista, int codigo_curso)
 {
