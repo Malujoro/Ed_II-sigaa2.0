@@ -78,7 +78,7 @@ tempo_tipo calcular_tempo_medio(ArvoreBB **arvore, union Data info, int repetico
         adicionou = arvorebb_add(arvore, info);
 
         fim = clock();
-
+        
         if(adicionou)
             arvorebb_remover(arvore, info.curso.cod);
 

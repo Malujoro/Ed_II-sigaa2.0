@@ -1,7 +1,7 @@
 #ifndef EXIBIR_H
 #define EXIBIR_H
 
-#include "../lista_alunos/lista.h"
+#include "../lista_alunos/listabb.h"
 #include "../arvorebb/arvorebb.h"
 
 void exibir_alunos_do_curso(Lista *lista, int codigo_curso);

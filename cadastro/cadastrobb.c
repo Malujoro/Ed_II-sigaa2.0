@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cadastro.h"
+#include "cadastrobb.h"
 #include "../extras/extras.h"
 #include "../arvorebb/arvorebb.h"
-#include "../lista_alunos/lista.h"
+#include "../lista_alunos/listabb.h"
 
 void cadastrar_aluno(Lista **lista, ArvoreBB *raiz_curso)
 {

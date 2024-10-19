@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista.h"
+#include "listabb.h"
 
 int compara_string_crescente(char *palavra1, char *palavra2)
 {

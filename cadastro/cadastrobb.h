@@ -1,7 +1,7 @@
 #ifndef CADASTRO_H
 #define CADASTRO_H
 
-#include "../lista_alunos/lista.h"
+#include "../lista_alunos/listabb.h"
 #include "../arvorebb/arvorebb.h"
 
 void cadastrar_aluno(Lista **lista, ArvoreBB *raiz_curso);

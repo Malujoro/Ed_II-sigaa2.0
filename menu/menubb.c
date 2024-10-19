@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include "menu.h"
 #include "../extras/extras.h"
-#include "../cadastrobb/cadastrobb.h"
-#include "../exibirbb/exibirbb.h"
-#include "../removerbb/removerbb.h"
-#include "../lista_alunosbb/listabb.h"
+#include "../cadastro/cadastrobb.h"
+#include "../exibir/exibirbb.h"
+#include "../remover/removerbb.h"
+#include "../lista_alunos/listabb.h"
 #include "../arvorebb/arvorebb.h"
 
 
