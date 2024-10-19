@@ -126,8 +126,8 @@ void arvorebb_exibir(ArvoreBB *raiz)
 {
     if (raiz != NULL)
     {
-        printf("%d | ", raiz->info.matricula);
         arvorebb_exibir(raiz->esquerdo);
+        printf("%d | ", raiz->info.matricula);
         arvorebb_exibir(raiz->direito);
     }
 }
