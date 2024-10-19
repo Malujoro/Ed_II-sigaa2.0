@@ -101,7 +101,6 @@ int main()
     arvore_decrescente = montar_arvore_decrescente(quant_nos);
     arvore_aleatoria = montar_arvore_aleatoria(quant_nos);
     
-
     for(int i = 0; i < 3; i++)
     {
         union Data info = preencher_no_curso(valores[i]);
@@ -115,6 +114,10 @@ int main()
         printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n", media_decrescente);
         printf("[Aleatória] Tempo médio de execução: %lf microssegundos\n\n", media_aleatoria);
     }
+
+    arvorebb_desaloca(&arvore_crescente);
+    arvorebb_desaloca(&arvore_decrescente);
+    arvorebb_desaloca(&arvore_aleatoria);
 
     return 0;
 }

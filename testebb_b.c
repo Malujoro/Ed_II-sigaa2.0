@@ -107,6 +107,10 @@ int main()
         printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n", media_decrescente);
         printf("[Aleatória] Tempo médio de execução: %lf microssegundos\n\n", media_aleatoria);
     }
+
+    arvorebb_desaloca(&arvore_crescente);
+    arvorebb_desaloca(&arvore_decrescente);
+    arvorebb_desaloca(&arvore_aleatoria);
     
     return 0;
 }
