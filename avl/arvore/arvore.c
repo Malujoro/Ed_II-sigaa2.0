@@ -22,6 +22,7 @@ ArvoreAVL *no_cria(union Data info)
     no = no_aloca();
 
     no->info = info;
+    no->altura = 0;
     no->esquerdo = NULL;
     no->direito = NULL;
     return no;
@@ -85,11 +86,84 @@ void arvoreavl_disciplina_desaloca(ArvoreAVL **raiz)
     }
 }
 
+int retornar_altura(ArvoreAVL *raiz)
+{
+    return raiz == NULL ? -1 : raiz->altura;
+}
+
+void atualizar_altura(ArvoreAVL *raiz)
+{
+    if(raiz != NULL)
+    {
+        int altura_esquerda = retornar_altura(raiz->esquerdo);
+        int altura_direita = retornar_altura(raiz->direito);
+        
+        raiz->altura = (altura_esquerda > altura_direita ? altura_esquerda : altura_direita) + 1;
+    }
+}
+
+void rotacao_esquerda(ArvoreAVL **raiz)
+{
+    ArvoreAVL *aux;
+
+    aux = (*raiz)->direito;
+    (*raiz)->direito = aux->esquerdo;
+    aux->esquerdo = (*raiz);
+    (*raiz) = aux;
+
+    atualizar_altura(*raiz);
+    atualizar_altura((*raiz)->esquerdo);
+}
+
+void rotacao_direita(ArvoreAVL **raiz)
+{
+    ArvoreAVL *aux;
+
+    aux = (*raiz)->esquerdo;
+    (*raiz)->esquerdo = aux->direito;
+    aux->direito = (*raiz);
+    (*raiz) = aux;
+
+    atualizar_altura(*raiz);
+    atualizar_altura((*raiz)->direito);
+}
+
+int fator_balanceamento(ArvoreAVL *raiz)
+{
+    return retornar_altura(raiz->esquerdo) - retornar_altura(raiz->direito);
+}
+
+void balancear_avl(ArvoreAVL **raiz)
+{
+    if(*raiz != NULL)
+    {
+        int fb = fator_balanceamento(*raiz);
+
+        // Pendente para direita
+        if(fb == -2)
+        {
+            if(fator_balanceamento((*raiz)->direito) > 0)
+                rotacao_direita(&((*raiz)->direito));
+            rotacao_esquerda(raiz);
+        }
+        // Pendente para esquerda
+        else if(fb == 2)
+        {
+            if(fator_balanceamento((*raiz)->esquerdo) < 0)
+                rotacao_esquerda(&((*raiz)->esquerdo));
+            rotacao_direita(raiz);  
+        }
+    }
+}
+
 int arvoreavl_add(ArvoreAVL **raiz, union Data info)
 {
     int inseriu = 1;
+
     if ((*raiz) == NULL)
+    {
         (*raiz) = no_cria(info);
+    }
     else
     {
         if (info.matricula < (*raiz)->info.matricula)
@@ -98,6 +172,9 @@ int arvoreavl_add(ArvoreAVL **raiz, union Data info)
             inseriu = arvoreavl_add(&((*raiz)->direito), info);
         else
             inseriu = 0;
+
+        balancear_avl(raiz);
+        atualizar_altura(*raiz);
     }
 
     return inseriu;
@@ -126,8 +203,8 @@ void arvoreavl_exibir(ArvoreAVL *raiz)
 {
     if (raiz != NULL)
     {
-        arvoreavl_exibir(raiz->esquerdo);
         printf("%d | ", raiz->info.matricula);
+        arvoreavl_exibir(raiz->esquerdo);
         arvoreavl_exibir(raiz->direito);
     }
 }
@@ -235,6 +312,9 @@ int arvoreavl_remover(ArvoreAVL **raiz, int codigo)
             removeu = arvoreavl_remover(&((*raiz)->esquerdo), codigo);
         else if (codigo > (*raiz)->info.matricula)
             removeu = arvoreavl_remover(&((*raiz)->direito), codigo);
+
+        balancear_avl(raiz);
+        atualizar_altura(*raiz);
     }
     else
         removeu = 0;
@@ -254,6 +334,7 @@ int arvoreavl_total_nos(ArvoreAVL *raiz)
     return quant;
 }
 
+
 // int main()
 // {
 //     for (int cont = 0; cont < 10; cont++)
@@ -262,6 +343,7 @@ int arvoreavl_total_nos(ArvoreAVL *raiz)
 
 //         int quant = 10;
 //         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
+//         // int mat[] = {3, 1, 5, 20, 80, 6, 9, 0, 4, 7};
 //         union Data info;
 
 //         for (int i = 0; i < quant; i++)
@@ -289,3 +371,24 @@ int arvoreavl_total_nos(ArvoreAVL *raiz)
 //     }
 //     return 0;
 // }
+
+int main()
+{
+    ArvoreAVL *raiz = arvoreavl_cria();
+
+    int quant = 9;
+    int mat[] = {1000, 3000, 2000, 2300, 4000, 2500, 2400, 2600, 2350};
+    union Data info;
+
+    for (int i = 0; i < quant; i++)
+    {
+        info.matricula = mat[i];
+        arvoreavl_add(&raiz, info);
+        printf("\nÁrvore após inserir %d\n", info.matricula);
+        arvoreavl_exibir(raiz);
+    }
+
+    arvoreavl_desaloca(&raiz);
+    printf("\n\n");
+    return 0;
+}

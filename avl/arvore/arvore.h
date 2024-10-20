@@ -34,6 +34,7 @@ union Data {
 typedef struct arvoreavl
 {
     union Data info;
+    int altura;
     struct arvoreavl *esquerdo;
     struct arvoreavl *direito;
 } ArvoreAVL;
