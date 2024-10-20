@@ -334,61 +334,23 @@ int arvoreavl_total_nos(ArvoreAVL *raiz)
     return quant;
 }
 
-
 // int main()
 // {
-//     for (int cont = 0; cont < 10; cont++)
+//     ArvoreAVL *raiz = arvoreavl_cria();
+
+//     int quant = 9;
+//     int mat[] = {1000, 3000, 2000, 2300, 4000, 2500, 2400, 2600, 2350};
+//     union Data info;
+
+//     for (int i = 0; i < quant; i++)
 //     {
-//         ArvoreAVL *raiz = arvoreavl_cria();
-
-//         int quant = 10;
-//         int mat[] = {3, 1, 5, 2, 8, 6, 9, 0, 4, 7};
-//         // int mat[] = {3, 1, 5, 20, 80, 6, 9, 0, 4, 7};
-//         union Data info;
-
-//         for (int i = 0; i < quant; i++)
-//         {
-//             info.matricula = mat[i];
-//             arvoreavl_add(&raiz, info);
-//         }
-
-//         if (cont == 0)
-//         {
-//             printf("Árvore original\n");
-//             arvoreavl_exibir(raiz);
-//             printf("\n");
-//         }
-
-//         int removeu = arvoreavl_remover(&raiz, cont);
-//         if (removeu)
-//             printf("\nÁrvore após remover %d\n", cont);
-//         else
-//             printf("\nÁrvore após remover [Elemento não encontrado]\n");
+//         info.matricula = mat[i];
+//         arvoreavl_add(&raiz, info);
+//         printf("\nÁrvore após inserir %d\n", info.matricula);
 //         arvoreavl_exibir(raiz);
-
-//         arvoreavl_desaloca(&raiz);
-//         printf("\n\n");
 //     }
+
+//     arvoreavl_desaloca(&raiz);
+//     printf("\n\n");
 //     return 0;
 // }
-
-int main()
-{
-    ArvoreAVL *raiz = arvoreavl_cria();
-
-    int quant = 9;
-    int mat[] = {1000, 3000, 2000, 2300, 4000, 2500, 2400, 2600, 2350};
-    union Data info;
-
-    for (int i = 0; i < quant; i++)
-    {
-        info.matricula = mat[i];
-        arvoreavl_add(&raiz, info);
-        printf("\nÁrvore após inserir %d\n", info.matricula);
-        arvoreavl_exibir(raiz);
-    }
-
-    arvoreavl_desaloca(&raiz);
-    printf("\n\n");
-    return 0;
-}
