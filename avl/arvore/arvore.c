@@ -333,24 +333,3 @@ int arvoreavl_total_nos(ArvoreAVL *raiz)
     }
     return quant;
 }
-
-// int main()
-// {
-//     ArvoreAVL *raiz = arvoreavl_cria();
-
-//     int quant = 9;
-//     int mat[] = {1000, 3000, 2000, 2300, 4000, 2500, 2400, 2600, 2350};
-//     union Data info;
-
-//     for (int i = 0; i < quant; i++)
-//     {
-//         info.matricula = mat[i];
-//         arvoreavl_add(&raiz, info);
-//         printf("\nÁrvore após inserir %d\n", info.matricula);
-//         arvoreavl_exibir(raiz);
-//     }
-
-//     arvoreavl_desaloca(&raiz);
-//     printf("\n\n");
-//     return 0;
-// }
