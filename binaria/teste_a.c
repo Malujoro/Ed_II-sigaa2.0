@@ -82,7 +82,9 @@ tempo_tipo calcular_tempo_medio(ArvoreBB **arvore, union Data info, int repetico
         if(adicionou)
             arvorebb_remover(arvore, info.curso.cod);
 
-        media += calcula_tempo(inicio, fim);
+        tempo_gasto = calcula_tempo(inicio, fim);
+        printf("Tempo médio de execução: %lf microssegundos\n", tempo_gasto);
+        media += tempo_gasto;
     }
     media /= repeticoes;
     return media;
@@ -107,12 +109,15 @@ int main()
         printf("Valor escolhido: %d\n", valores[i]);
 
         tempo_tipo media_crescente = calcular_tempo_medio(&arvore_crescente, info, repeticoes);
-        tempo_tipo media_decrescente = calcular_tempo_medio(&arvore_decrescente, info, repeticoes);
-        tempo_tipo media_aleatoria = calcular_tempo_medio(&arvore_aleatoria, info, repeticoes);
+        printf("[Crescente] Tempo médio de execução: %lf microssegundos\n\n", media_crescente);
 
-        printf("[Crescente] Tempo médio de execução: %lf microssegundos\n", media_crescente);
-        printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n", media_decrescente);
+        tempo_tipo media_decrescente = calcular_tempo_medio(&arvore_decrescente, info, repeticoes);
+
+        printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n\n", media_decrescente);
+
+        tempo_tipo media_aleatoria = calcular_tempo_medio(&arvore_aleatoria, info, repeticoes);
         printf("[Aleatória] Tempo médio de execução: %lf microssegundos\n\n", media_aleatoria);
+
     }
 
     arvorebb_desaloca(&arvore_crescente);

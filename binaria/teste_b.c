@@ -77,7 +77,9 @@ tempo_tipo calcular_tempo_medio(ArvoreBB *arvore, int codigo, int repeticoes)
 
         fim = clock();
 
-        media += calcula_tempo(inicio, fim);
+        tempo_gasto = calcula_tempo(inicio, fim);
+        printf("Tempo médio de execução: %lf microssegundos\n", tempo_gasto);
+        media += tempo_gasto;
     }
     media /= repeticoes;
     return media;
@@ -100,11 +102,12 @@ int main()
     {
         printf("Codigo escolhido: %d\n", codigos[i]);
         tempo_tipo media_crescente = calcular_tempo_medio(arvore_crescente, codigos[i], repeticoes);
-        tempo_tipo media_decrescente = calcular_tempo_medio(arvore_decrescente, codigos[i], repeticoes);
-        tempo_tipo media_aleatoria = calcular_tempo_medio(arvore_aleatoria, codigos[i], repeticoes);
+        printf("[Crescente] Tempo médio de execução: %lf microssegundos\n\n", media_crescente);
 
-        printf("[Crescente] Tempo médio de execução: %lf microssegundos\n", media_crescente);
-        printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n", media_decrescente);
+        tempo_tipo media_decrescente = calcular_tempo_medio(arvore_decrescente, codigos[i], repeticoes);
+        printf("[Decrescente] Tempo médio de execução: %lf microssegundos\n\n", media_decrescente);
+
+        tempo_tipo media_aleatoria = calcular_tempo_medio(arvore_aleatoria, codigos[i], repeticoes);
         printf("[Aleatória] Tempo médio de execução: %lf microssegundos\n\n", media_aleatoria);
     }
 
